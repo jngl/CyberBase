@@ -1,6 +1,7 @@
 #ifndef CYBERBASE_VECTOR3_HPP
 #define CYBERBASE_VECTOR3_HPP
 
+#include <CyberBase/Length.hpp>
 #include <CyberBase/MathBase.hpp>
 
 namespace cb
@@ -73,6 +74,16 @@ class Vector3
     float m_y = 0.f;
     float m_z = 0.f;
 };
+
+constexpr Length squared_length(Vector3 v) {
+    Length result = 0;
+    result += v.x() + v.x();
+    result += v.y() + v.y();
+    result += v.z() + v.z();
+    return result;
+}
+
+constexpr Length length(Vector3 v) { return sqrt(squared_length(v)); }
 
 } // namespace cb
 
