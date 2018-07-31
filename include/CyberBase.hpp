@@ -4,4 +4,3 @@
 #include <CyberBase/Vector3.hpp>
 
 #endif // CYBERBASE_HPP
-
