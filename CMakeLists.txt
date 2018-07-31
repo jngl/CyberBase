@@ -7,12 +7,13 @@ set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=boost-*,cppcoreguidelines-*,clang-a
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 
 #Boost
-find_package(Boost 1.55 REQUIRED COMPONENTS unit_test_framework)
+find_package(Boost 1.55 REQUIRED COMPONENTS unit_test_framework log)
 
 #CyberBase
 file(GLOB_RECURSE cyberbase_source_files src/*)
 add_library(CyberBase ${cyberbase_source_files})
-target_include_directories(CyberBase PUBLIC include/)
+target_include_directories(CyberBase PUBLIC include/ ${Boost_INCLUDE_DIR})
+target_link_libraries(CyberBase ${Boost_LIBRARIES})
 
 #example
 file(GLOB_RECURSE example_source_files example/*)
@@ -26,11 +27,9 @@ enable_testing()
 add_executable(CyberBaseTests ${TEST_FILES})
 
 target_link_libraries(CyberBaseTests
-    ${Boost_LIBRARIES} 
     CyberBase
 )
 target_include_directories(CyberBaseTests PUBLIC
-    ${Boost_INCLUDE_DIR}
     include
 )
 

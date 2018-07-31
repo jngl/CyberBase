@@ -1,7 +1,8 @@
 {
     "cmake.configureOnOpen": true,
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "bitset": "cpp"
     },
     "editor.formatOnSave": true,
     "C_Cpp.configurationWarnings": "Disabled"
