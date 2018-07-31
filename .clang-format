@@ -8,3 +8,5 @@ BraceWrapping:
   AfterNamespace: true
   AfterStruct: true
 IndentWidth: 4
+BreakConstructorInitializers: AfterColon
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
