@@ -2,7 +2,10 @@
     "cmake.configureOnOpen": true,
     "files.associations": {
         "iostream": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp",
+        "limits": "cpp"
     },
     "editor.formatOnSave": true,
     "C_Cpp.configurationWarnings": "Disabled"

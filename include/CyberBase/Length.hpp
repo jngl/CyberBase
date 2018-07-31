@@ -5,22 +5,25 @@
 
 namespace cb
 {
-typedef float Length;
+using Length = float;
 
 constexpr Length mm(float v) {
-    return UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::milli)];
+    return v *
+           UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::milli)];
 }
 
 constexpr Length cm(float v) {
-    return UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::centi)];
+    return v *
+           UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::centi)];
 }
 
 constexpr Length m(float v) {
-    return UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::no)];
+    return v * UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::no)];
 }
 
 constexpr Length km(float v) {
-    return UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::kilo)];
+    return v *
+           UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::kilo)];
 }
 
 } // namespace cb
