@@ -6,4 +6,4 @@
 
 #define CB_LOG BOOST_LOG_TRIVIAL
 
-#endif
+#endif // CYBERBASE_LOG_HPP
