@@ -21,9 +21,7 @@ int main() {
     CB_LOG_ERROR << "e"
                  << "1";
 
-    // CB_LOG_WARN() << "b";
-    // CB_LOG_ERROR() << "b";
     cb::Vector3 test{45, 2, 3};
 
-    //  std::cout << test.x << " " << test.y << " " << test.z << std::endl;
+    CB_LOG_INFO << test.x << " " << test.y << " " << test.z;
 }
