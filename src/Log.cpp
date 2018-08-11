@@ -26,31 +26,7 @@ void LogLine::print(const std::string &message) const {
         (*stream) << message;
     }
 }
-/*
-LogLine operator<<(LogLine &&ll, const std::string &str) {
-    LogLine myLine(std::move(ll));
-    myLine.print(str);
-    return myLine;
-}
 
-LogLine operator<<(LogLine &&ll, const char *str) {
-    LogLine myLine(std::move(ll));
-    myLine.print(std::string(str));
-    return myLine;
-}
-
-LogLine operator<<(LogLine &&ll, double val) {
-    LogLine myLine(std::move(ll));
-    myLine.print(std::to_string(val));
-    return myLine;
-}
-
-LogLine operator<<(LogLine &&ll, int val) {
-    LogLine myLine(std::move(ll));
-    myLine.print(std::to_string(val));
-    return myLine;
-}
-*/
 const LogLine &operator<<(const LogLine &ll, const std::string &str) {
     ll.print(str);
     return ll;
