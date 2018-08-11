@@ -1,18 +1,8 @@
 #include <CyberBase/Log.hpp>
 #include <CyberBase/Vector3.hpp>
-#include <fstream>
-#include <iostream>
 
 int main() {
-    std::ofstream logFile("log.txt");
-
-    cb::getLoggerInfo().add(&std::cout);
-    cb::getLoggerWarning().add(&std::cerr);
-    cb::getLoggerError().add(&std::cerr);
-
-    cb::getLoggerInfo().add(&logFile);
-    cb::getLoggerWarning().add(&logFile);
-    cb::getLoggerError().add(&logFile);
+    cb::addDefaultLogOutput();
 
     CB_LOG_INFO << "i"
                 << "1";

@@ -54,6 +54,8 @@ LogLine logError(const char *file, int line);
 Logger &getLoggerInfo();
 Logger &getLoggerWarning();
 Logger &getLoggerError();
+
+void addDefaultLogOutput();
 } // namespace cb
 
 #define CB_LOG_INFO cb::logInfo(__FILE__, __LINE__)

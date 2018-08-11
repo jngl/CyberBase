@@ -1,5 +1,6 @@
 #include "CyberBase/Log.hpp"
 
+#include <fstream>
 #include <iostream>
 
 namespace cb
@@ -93,5 +94,17 @@ Logger &getLoggerInfo() { return info; }
 Logger &getLoggerWarning() { return warning; }
 
 Logger &getLoggerError() { return error; }
+
+void addDefaultLogOutput() {
+    static std::ofstream logFile("log.txt");
+
+    cb::getLoggerInfo().add(&std::cout);
+    cb::getLoggerWarning().add(&std::cerr);
+    cb::getLoggerError().add(&std::cerr);
+
+    cb::getLoggerInfo().add(&logFile);
+    cb::getLoggerWarning().add(&logFile);
+    cb::getLoggerError().add(&logFile);
+}
 
 } // namespace cb
