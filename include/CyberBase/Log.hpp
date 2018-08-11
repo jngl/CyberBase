@@ -36,12 +36,7 @@ class LogLine
   private:
     Logger *m_logger;
 };
-/*
-LogLine operator<<(LogLine &&ll, const std::string &str);
-LogLine operator<<(LogLine &&ll, const char *str);
-LogLine operator<<(LogLine &&ll, double val);
-LogLine operator<<(LogLine &&ll, int val);
-*/
+
 const LogLine &operator<<(const LogLine &ll, const std::string &str);
 const LogLine &operator<<(const LogLine &ll, const char *str);
 const LogLine &operator<<(const LogLine &ll, double val);
