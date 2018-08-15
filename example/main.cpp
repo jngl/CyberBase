@@ -1,6 +1,4 @@
-#include <CyberBase/Log.hpp>
-#include <CyberBase/Vector2.hpp>
-#include <CyberBase/Vector3.hpp>
+#include <CyberBase.hpp>
 
 int main() {
     cb::addDefaultLogOutput();

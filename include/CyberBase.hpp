@@ -4,6 +4,7 @@
 #include <CyberBase/Length.hpp>
 #include <CyberBase/Log.hpp>
 #include <CyberBase/UnitPrefix.hpp>
+#include <CyberBase/Vector2.hpp>
 #include <CyberBase/Vector3.hpp>
 
 #endif // CYBERBASE_HPP
