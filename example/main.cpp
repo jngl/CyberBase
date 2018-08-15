@@ -1,4 +1,5 @@
 #include <CyberBase/Log.hpp>
+#include <CyberBase/Vector2.hpp>
 #include <CyberBase/Vector3.hpp>
 
 int main() {
@@ -12,6 +13,8 @@ int main() {
                  << "1";
 
     cb::Vector3 test{45, 2, 3};
-
     CB_LOG_INFO << test.x << " " << test.y << " " << test.z;
+
+    cb::Vector2 test2{45, 2};
+    CB_LOG_INFO << test2.x << " " << test2.y;
 }
