@@ -9,7 +9,7 @@ namespace cb
 struct Vector2
 {
     constexpr Vector2() = default;
-    constexpr Vector2(float p_x, float p_y) : x(p_x), y(p_y) {}
+    constexpr Vector2(Real p_x, Real p_y) : x(p_x), y(p_y) {}
 
     constexpr Vector2 operator+(const Vector2 &r) const {
         return {x + r.x, y + r.y};
@@ -19,11 +19,11 @@ struct Vector2
         return {x - r.x, y - r.y};
     }
 
-    constexpr Vector2 operator/(float r) const { return {x / r, y / r}; }
+    constexpr Vector2 operator/(Real r) const { return {x / r, y / r}; }
 
-    constexpr Vector2 operator*(float r) const { return {x * r, y * r}; }
+    constexpr Vector2 operator*(Real r) const { return {x * r, y * r}; }
 
-    constexpr Vector2 operator/=(float r) {
+    constexpr Vector2 operator/=(Real r) {
         x /= r;
         y /= r;
         return *this;
@@ -33,8 +33,8 @@ struct Vector2
         return delta_equal(x, p_right.x) && delta_equal(y, p_right.y);
     }
 
-    float x = 0.f;
-    float y = 0.f;
+    Real x = 0.f;
+    Real y = 0.f;
 };
 
 constexpr Length squared_length(Vector2 v) {

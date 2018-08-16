@@ -9,10 +9,7 @@ namespace cb
 struct Vector3
 {
     constexpr Vector3() = default;
-    constexpr Vector3(float p_x, float p_y, float p_z) :
-        x(p_x),
-        y(p_y),
-        z(p_z) {}
+    constexpr Vector3(Real p_x, Real p_y, Real p_z) : x(p_x), y(p_y), z(p_z) {}
 
     constexpr Vector3 operator+(const Vector3 &r) const {
         return {x + r.x, y + r.y, z + r.z};
@@ -22,11 +19,11 @@ struct Vector3
         return {x - r.x, y - r.y, z - r.z};
     }
 
-    constexpr Vector3 operator/(float r) const { return {x / r, y / r, z / r}; }
+    constexpr Vector3 operator/(Real r) const { return {x / r, y / r, z / r}; }
 
-    constexpr Vector3 operator*(float r) const { return {x * r, y * r, z * r}; }
+    constexpr Vector3 operator*(Real r) const { return {x * r, y * r, z * r}; }
 
-    constexpr Vector3 operator/=(float r) {
+    constexpr Vector3 operator/=(Real r) {
         x /= r;
         y /= r;
         z /= r;
@@ -38,9 +35,9 @@ struct Vector3
                delta_equal(z, p_right.z);
     }
 
-    float x = 0.f;
-    float y = 0.f;
-    float z = 0.f;
+    Real x = 0.f;
+    Real y = 0.f;
+    Real z = 0.f;
 };
 
 constexpr Length squared_length(Vector3 v) {

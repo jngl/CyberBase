@@ -10,8 +10,10 @@ using std::cos;
 using std::sin;
 using std::sqrt;
 
-constexpr bool delta_equal(float a, float b) {
-    return abs(a - b) < std::numeric_limits<float>::epsilon();
+using Real = float;
+
+constexpr bool delta_equal(Real a, Real b) {
+    return abs(a - b) < std::numeric_limits<Real>::epsilon();
 }
 } // namespace cb
 

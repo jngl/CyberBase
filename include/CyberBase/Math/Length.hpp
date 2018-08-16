@@ -5,23 +5,23 @@
 
 namespace cb
 {
-using Length = float;
+using Length = Real;
 
-constexpr Length mm(float v) {
+constexpr Length mm(Real v) {
     return v *
            UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::milli)];
 }
 
-constexpr Length cm(float v) {
+constexpr Length cm(Real v) {
     return v *
            UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::centi)];
 }
 
-constexpr Length m(float v) {
+constexpr Length m(Real v) {
     return v * UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::no)];
 }
 
-constexpr Length km(float v) {
+constexpr Length km(Real v) {
     return v *
            UnitPrefix_definition[static_cast<unsigned int>(UnitPrefix::kilo)];
 }
