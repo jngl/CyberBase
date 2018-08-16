@@ -1,7 +1,7 @@
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE MyTest
 
-#include <CyberBase/Vector3.hpp>
+#include <CyberBase/Math/Vector3.hpp>
 
 #include <boost/test/unit_test.hpp>
 

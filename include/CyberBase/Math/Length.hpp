@@ -1,7 +1,7 @@
 #ifndef CYBERBASE_LENGTH_HPP
 #define CYBERBASE_LENGTH_HPP
 
-#include <CyberBase/UnitPrefix.hpp>
+#include <CyberBase/Math/UnitPrefix.hpp>
 
 namespace cb
 {
