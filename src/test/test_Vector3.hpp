@@ -51,15 +51,11 @@ constexpr void testVector3Div() {
     static_assert(c == result);
 }
 
-constexpr void testVector3DivEqual() {
-    constexpr cb::Vector3 val = []() {
-        cb::Vector3 a = {1.f, 2.f, 3.f};
-        a /= 2.f;
-        return a;
-    }();
-
-    constexpr cb::Vector3 result{0.5f, 1.f, 1.5f};
-    static_assert(val == result);
+constexpr cb::Vector3 testVector3DivEqual() {
+    cb::Vector3 a = {1.f, 2.f, 3.f};
+    a /= 2.f;
+    return a;
 }
+static_assert(testVector3DivEqual() == cb::Vector3{0.5f, 1.f, 1.5f});
 
 #endif
