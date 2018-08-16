@@ -1,8 +1,8 @@
 #ifndef CYBERBASE_VECTOR2_HPP
 #define CYBERBASE_VECTOR2_HPP
 
-#include <CyberBase/Length.hpp>
-#include <CyberBase/MathBase.hpp>
+#include <CyberBase/Math/Length.hpp>
+#include <CyberBase/Math/MathBase.hpp>
 
 namespace cb
 {

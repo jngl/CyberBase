@@ -1,7 +1,7 @@
 #ifndef CYBERBASE_TEST_VECTOR2_HPP
 #define CYBERBASE_TEST_VECTOR2_HPP
 
-#include <CyberBase/Vector2.hpp>
+#include <CyberBase/Math/Vector2.hpp>
 
 constexpr void testVector2DefaultConstructor() {
     constexpr cb::Vector2 a;
