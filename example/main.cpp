@@ -16,6 +16,6 @@ int main() {
     cb::Vector2 test2{45, 2};
     CB_LOG_INFO << test2.x << " " << test2.y;
 
-    cb::Metre m(12);
+    cb::Metre m(12, cb::UnitPrefix::kilo);
     CB_LOG_INFO << "metre : " << m.value();
 }

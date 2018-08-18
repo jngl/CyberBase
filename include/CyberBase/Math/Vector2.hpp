@@ -2,7 +2,6 @@
 #define CYBERBASE_VECTOR2_HPP
 
 #include <CyberBase/Math/MathBase.hpp>
-#include <CyberBase/TypeSafe/Length.hpp>
 
 namespace cb
 {
