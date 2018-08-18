@@ -1,8 +1,8 @@
 #ifndef CYBERBASE_VECTOR3_HPP
 #define CYBERBASE_VECTOR3_HPP
 
-#include <CyberBase/Math/Length.hpp>
 #include <CyberBase/Math/MathBase.hpp>
+#include <CyberBase/TypeSafe/Length.hpp>
 
 namespace cb
 {
@@ -40,15 +40,15 @@ struct Vector3
     Real z = 0.f;
 };
 
-constexpr Length squared_length(Vector3 v) {
-    Length result = 0;
+constexpr Real squared_length(Vector3 v) {
+    Real result = 0;
     result += v.x + v.x;
     result += v.y + v.y;
     result += v.z + v.z;
     return result;
 }
 
-constexpr Length length(Vector3 v) { return sqrt(squared_length(v)); }
+constexpr Real length(Vector3 v) { return sqrt(squared_length(v)); }
 
 } // namespace cb
 

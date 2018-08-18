@@ -3,7 +3,7 @@ project (CyberBase)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=boost-*,cppcoreguidelines-*,clang-analyzer-*,modernize-*,performance-*,google-*;-header-filter=CyberBase")
+set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=boost-*,cppcoreguidelines-*,clang-analyzer-*,modernize-*,performance-*;-header-filter=CyberBase")
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 
 #Boost

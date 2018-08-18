@@ -3,9 +3,11 @@
 
 #include <CyberBase/Log.hpp>
 
-#include <CyberBase/Math/Length.hpp>
-#include <CyberBase/Math/UnitPrefix.hpp>
 #include <CyberBase/Math/Vector2.hpp>
 #include <CyberBase/Math/Vector3.hpp>
+
+#include <CyberBase/TypeSafe/Length.hpp>
+#include <CyberBase/TypeSafe/Metre.hpp>
+#include <CyberBase/TypeSafe/UnitPrefix.hpp>
 
 #endif // CYBERBASE_HPP
