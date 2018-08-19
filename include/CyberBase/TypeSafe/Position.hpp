@@ -1,8 +1,8 @@
 #ifndef CYBER_BASE_TYPE_SAFE_POSITION_HPP
 #define CYBER_BASE_TYPE_SAFE_POSITION_HPP
 
-#include <CyberBase/Math/Tuple3.hpp>
 #include <CyberBase/TypeSafe/Metre.hpp>
+#include <CyberBase/Utils/Tuple3.hpp>
 
 namespace cb
 {

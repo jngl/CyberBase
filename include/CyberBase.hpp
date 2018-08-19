@@ -10,4 +10,6 @@
 #include <CyberBase/TypeSafe/Position.hpp>
 #include <CyberBase/TypeSafe/UnitPrefix.hpp>
 
+#include <CyberBase/Utils/Tuple3.hpp>
+
 #endif // CYBERBASE_HPP

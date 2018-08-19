@@ -10,7 +10,7 @@ int main() {
     CB_LOG_ERROR << "e"
                  << "1";
 
-    cb::Vector3 test{45, 2, 3};
+    cb::Vector3r test{45, 2, 3};
     CB_LOG_INFO << test.x << " " << test.y << " " << test.z;
 
     cb::Vector2 test2{45, 2};
