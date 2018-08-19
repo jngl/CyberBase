@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 namespace cb
 {
@@ -38,7 +39,10 @@ const LogLine &operator<<(const LogLine &ll, const char *str) {
 }
 
 const LogLine &operator<<(const LogLine &ll, double val) {
-    ll.print(std::to_string(val));
+    std::stringstream str;
+    // str.precision(5);
+    str << val;
+    ll.print(str.str());
     return ll;
 }
 

@@ -19,7 +19,7 @@ int main() {
     cb::Metre m(12, cb::UnitPrefix::kilo);
     CB_LOG_INFO << "metre : " << m;
 
-    cb::Metre m2 = cb::m(1);
+    cb::Metre m2 = cb::m(1.21);
     CB_LOG_INFO << "metre : " << m2;
 
     cb::Position pos{cb::m(1), cb::m(2), cb::m(3)};
