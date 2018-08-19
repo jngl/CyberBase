@@ -14,7 +14,7 @@ template <class T> struct Tuple3
 
 template <class T>
 const LogLine &operator<<(const LogLine &ll, const Tuple3<T> &tuple) {
-    ll << tuple.x << " " << tuple.y << " " << tuple.z;
+    ll << "{" << tuple.x << " " << tuple.y << " " << tuple.z << "}";
     return ll;
 }
 
