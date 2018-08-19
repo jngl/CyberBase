@@ -17,8 +17,11 @@ int main() {
     CB_LOG_INFO << test2.x << " " << test2.y;
 
     cb::Metre m(12, cb::UnitPrefix::kilo);
-    CB_LOG_INFO << "metre : " << m.value();
+    CB_LOG_INFO << "metre : " << m;
 
     cb::Metre m2 = cb::m(1);
-    CB_LOG_INFO << "metre : " << m2.value();
+    CB_LOG_INFO << "metre : " << m2;
+
+    cb::Position pos{cb::m(1), cb::m(2), cb::m(3)};
+    CB_LOG_INFO << "pos : " << pos;
 }

@@ -7,6 +7,7 @@
 #include <CyberBase/Math/Vector3.hpp>
 
 #include <CyberBase/TypeSafe/Metre.hpp>
+#include <CyberBase/TypeSafe/Position.hpp>
 #include <CyberBase/TypeSafe/UnitPrefix.hpp>
 
 #endif // CYBERBASE_HPP
