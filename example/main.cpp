@@ -18,4 +18,7 @@ int main() {
 
     cb::Metre m(12, cb::UnitPrefix::kilo);
     CB_LOG_INFO << "metre : " << m.value();
+
+    cb::Metre m2 = cb::m(1);
+    CB_LOG_INFO << "metre : " << m2.value();
 }

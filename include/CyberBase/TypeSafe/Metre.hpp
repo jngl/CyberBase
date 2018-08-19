@@ -17,6 +17,9 @@ class Metre : public TypeSafeBase<Real>
         TypeSafeBase<Real>(p_value * gsl::at(UnitPrefix_definition,
                                              static_cast<size_t>(p_prefix))) {}
 };
+
+constexpr Metre m(Real p_value) { return Metre{p_value, UnitPrefix::no}; }
+
 } // namespace cb
 
 #endif // CYBERBASE_MATH_METRE_HPP
