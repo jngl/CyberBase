@@ -21,7 +21,7 @@ class Metre : public TypeSafeBase<Real>
 
 constexpr Metre m(Real p_value) { return Metre{p_value, UnitPrefix::no}; }
 
-const LogLine &operator<<(const LogLine &ll, const Metre &tuple);
+const LogLine &operator<<(const LogLine &ll, const Metre &metre);
 
 } // namespace cb
 
