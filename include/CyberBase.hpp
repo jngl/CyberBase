@@ -12,4 +12,9 @@
 
 #include <CyberBase/Utils/Tuple3.hpp>
 
+#include <CyberBase/Stream/StreamDecorator.hpp>
+#include <CyberBase/Stream/StreamFilter.hpp>
+#include <CyberBase/Stream/StreamMap.hpp>
+#include <CyberBase/Stream/StreamVector.hpp>
+
 #endif // CYBERBASE_HPP

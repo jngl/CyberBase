@@ -1,4 +1,7 @@
 #include <CyberBase.hpp>
+#include <vector>
+
+#include "Person.hpp"
 
 int main() {
     cb::addDefaultLogOutput();
@@ -24,4 +27,15 @@ int main() {
 
     cb::Position pos{cb::m(1), cb::m(2), cb::m(3)};
     CB_LOG_INFO << "pos : " << pos;
+
+    {
+        auto line = CB_LOG_INFO;
+        line << "person : ";
+        std::vector<Person> people = {
+            {15, "Alice"}, {18, "Bob"}, {24, "Cecile"}};
+        cb::stream(people)
+            .filter(cb::getter(&Person::isAdult))
+            .map(cb::getter(&Person::name))
+            .for_each([&line](std::string str) { line << str << " "; });
+    }
 }
