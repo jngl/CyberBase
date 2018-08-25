@@ -3,25 +3,18 @@
 
 class Person
 {
-public:
-    Person(int p_age, std::string p_name):
+  public:
+    Person(int p_age, std::string p_name) :
         m_age(p_age),
-        m_name(p_name)
-    {};
+        m_name(std::move(p_name)){};
 
-    int age() const{
-        return m_age;
-    }
+    int age() const { return m_age; }
 
-    std::string name() const{
-        return m_name;
-    }
+    std::string name() const { return m_name; }
 
-    bool isAdult() const{
-        return age()>=18;
-    }
+    bool isAdult() const { return age() >= 18; }
 
-private:
+  private:
     int m_age;
     std::string m_name;
 };

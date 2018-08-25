@@ -11,7 +11,7 @@ template <class Stream, class Function> class StreamFilter
 
     StreamFilter(Stream p_stream, Function p_function) :
         m_stream(p_stream),
-        m_function(p_function) {}
+        m_function(std::move(p_function)) {}
 
     template <class Function2> void for_each(Function2 func) const {
         m_stream.for_each([=](auto val) {
