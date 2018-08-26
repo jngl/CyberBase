@@ -6,7 +6,7 @@
 
 namespace cb
 {
-using Position = Tuple3<Metre>;
+// using Position = Tuple3<Metre>;
 }
 
 #endif // CYBER_BASE_TYPE_SAFE_POSITION_HPP

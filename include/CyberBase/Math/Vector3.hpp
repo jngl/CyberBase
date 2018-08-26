@@ -6,7 +6,7 @@
 
 namespace cb
 {
-
+/*
 template <class T> class Vector3 : public Tuple3<T>
 {
   public:
@@ -64,7 +64,7 @@ template <class T> class Vector3 : public Tuple3<T>
 using Vector3f = Vector3<float>;
 using Vector3d = Vector3<double>;
 using Vector3r = Vector3<Real>;
-
+*/
 /*
 constexpr Real squared_length(Vector3 v) {
     Real result = 0;

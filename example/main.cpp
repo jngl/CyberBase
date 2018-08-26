@@ -13,11 +13,14 @@ int main() {
     CB_LOG_ERROR << "e"
                  << "1";
 
-    cb::Vector3r test{45, 2, 3};
-    CB_LOG_INFO << test.x << " " << test.y << " " << test.z;
+    /*  cb::Vector3r test{45, 2, 3};
+      CB_LOG_INFO << test.x << " " << test.y << " " << test.z;*/
 
-    cb::Vector2 test2{45, 2};
-    CB_LOG_INFO << test2.x << " " << test2.y;
+    cb::Vector2<cb::BasicKernel> test2{45, 2};
+    CB_LOG_INFO << "Vector2<BasicKernel> :" << test2.x << " " << test2.y;
+
+    cb::Vector2<cb::MetreKernel> test3{cb::m(45), cb::m(2)};
+    CB_LOG_INFO << "Vector2<MetreKernel> :" << test3.x << " " << test3.y;
 
     cb::Metre m(12, cb::UnitPrefix::kilo);
     CB_LOG_INFO << "metre : " << m;
@@ -25,8 +28,8 @@ int main() {
     cb::Metre m2 = cb::m(1.21);
     CB_LOG_INFO << "metre : " << m2;
 
-    cb::Position pos{cb::m(1), cb::m(2), cb::m(3)};
-    CB_LOG_INFO << "pos : " << pos;
+    /* cb::Position pos{cb::m(1), cb::m(2), cb::m(3)};
+     CB_LOG_INFO << "pos : " << pos;*/
 
     {
         auto line = CB_LOG_INFO;

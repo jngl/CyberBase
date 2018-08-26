@@ -10,16 +10,20 @@
 namespace cb
 {
 
-class Metre : public TypeSafeBase<Real>
+class Metre : public TypeSafeBase<float>
 {
   public:
-    explicit constexpr Metre(Real p_value,
+    explicit constexpr Metre(float p_value,
                              UnitPrefix p_prefix = UnitPrefix::no) :
-        TypeSafeBase<Real>(p_value * gsl::at(UnitPrefix_definition,
-                                             static_cast<size_t>(p_prefix))) {}
+        TypeSafeBase<float>(p_value * gsl::at(UnitPrefix_definition,
+                                              static_cast<size_t>(p_prefix))) {}
+
+    constexpr bool operator==(const Metre &p_right) const {
+        return delta_equal(value(), p_right.value());
+    }
 };
 
-constexpr Metre m(Real p_value) { return Metre{p_value, UnitPrefix::no}; }
+constexpr Metre m(float p_value) { return Metre{p_value, UnitPrefix::no}; }
 
 const LogLine &operator<<(const LogLine &ll, const Metre &metre);
 

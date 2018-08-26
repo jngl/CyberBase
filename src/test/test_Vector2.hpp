@@ -2,19 +2,24 @@
 #define CYBERBASE_TEST_VECTOR2_HPP
 
 #include <CyberBase/Math/Vector2.hpp>
+#include <CyberBase/Zero.hpp>
 
-constexpr void testVector2DefaultConstructor() {
-    constexpr cb::Vector2 a;
-
-    static_assert(a.x == 0.f && a.y == 0.f);
+template <class Kernel> constexpr bool testVector2DefaultConstructor() {
+    using Length = typename Kernel::Length;
+    constexpr cb::Vector2<Kernel> a;
+    return a.x == cb::zero<Length>() && a.y == cb::zero<Length>();
 }
+static_assert(testVector2DefaultConstructor<cb::MetreKernel>());
+static_assert(testVector2DefaultConstructor<cb::BasicKernel>());
 
-constexpr void testVector2Constructor() {
-    constexpr cb::Vector2 a{1.f, 2.f};
-
-    static_assert(a.x == 1.f && a.y == 2.f);
+template <class Kernel>
+constexpr bool testVector2Constructor(typename Kernel::Length x,
+                                      typename Kernel::Length y) {
+    cb::Vector2<Kernel> a{x, y};
+    return a.x == x && a.y == y;
 }
-
+static_assert(testVector2Constructor<cb::MetreKernel>(cb::m(1), cb::m(2)));
+/*
 constexpr void testVector2Plus() {
     constexpr cb::Vector2 a{1.f, 2.f};
     constexpr cb::Vector2 b{4.f, 5.f};
@@ -60,6 +65,6 @@ constexpr void testVector2DivEqual() {
 
     constexpr cb::Vector2 result{0.5f, 1.f};
     static_assert(val == result);
-}
+}*/
 
 #endif
