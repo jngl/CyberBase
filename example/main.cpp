@@ -13,8 +13,13 @@ int main() {
     CB_LOG_ERROR << "e"
                  << "1";
 
-    /*  cb::Vector3r test{45, 2, 3};
-      CB_LOG_INFO << test.x << " " << test.y << " " << test.z;*/
+    cb::Vector3<cb::BasicKernel> test{45, 2, 3};
+    CB_LOG_INFO << "Vector3<BasicKernel> :" << test.x << " " << test.y << " "
+                << test.z;
+
+    cb::Vector3<cb::MetreKernel> testb{cb::m(45), cb::m(2), cb::m(3)};
+    CB_LOG_INFO << "Vector3<MetreKernel> :" << testb.x << " " << testb.y << " "
+                << testb.z;
 
     cb::Vector2<cb::BasicKernel> test2{45, 2};
     CB_LOG_INFO << "Vector2<BasicKernel> :" << test2.x << " " << test2.y;
