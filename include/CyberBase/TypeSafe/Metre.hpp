@@ -25,6 +25,18 @@ class Metre : public TypeSafeBase<float>
     constexpr Metre operator+(const Metre &r) const {
         return Metre{value() + r.value(), UnitPrefix::no};
     }
+
+    constexpr Metre operator-(const Metre &r) const {
+        return Metre{value() - r.value(), UnitPrefix::no};
+    }
+
+    constexpr Metre operator*(const float &r) const {
+        return Metre{value() * r, UnitPrefix::no};
+    }
+
+    constexpr Metre operator/(const float &r) const {
+        return Metre{value() / r, UnitPrefix::no};
+    }
 };
 
 constexpr Metre m(float p_value) { return Metre{p_value, UnitPrefix::no}; }
