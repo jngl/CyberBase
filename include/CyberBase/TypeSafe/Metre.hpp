@@ -21,11 +21,19 @@ class Metre : public TypeSafeBase<float>
     constexpr bool operator==(const Metre &p_right) const {
         return delta_equal(value(), p_right.value());
     }
+
+    constexpr Metre operator+(const Metre &r) const {
+        return Metre{value() + r.value(), UnitPrefix::no};
+    }
 };
 
 constexpr Metre m(float p_value) { return Metre{p_value, UnitPrefix::no}; }
 
 const LogLine &operator<<(const LogLine &ll, const Metre &metre);
+
+constexpr bool delta_equal(Metre a, Metre b) {
+    return abs(a.value() - b.value()) < std::numeric_limits<float>::epsilon();
+}
 
 } // namespace cb
 

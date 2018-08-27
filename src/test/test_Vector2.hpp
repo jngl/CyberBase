@@ -19,16 +19,23 @@ constexpr bool testVector2Constructor(typename Kernel::Length x,
     return a.x == x && a.y == y;
 }
 static_assert(testVector2Constructor<cb::MetreKernel>(cb::m(1), cb::m(2)));
-/*
-constexpr void testVector2Plus() {
-    constexpr cb::Vector2 a{1.f, 2.f};
-    constexpr cb::Vector2 b{4.f, 5.f};
-    constexpr cb::Vector2 c = a + b;
 
-    constexpr cb::Vector2 result{5.f, 7.f};
-    static_assert(c == result);
+template <class Kernel>
+constexpr bool
+testVector2Plus(typename Kernel::Length ax, typename Kernel::Length ay,
+                typename Kernel::Length bx, typename Kernel::Length by,
+                typename Kernel::Length rx, typename Kernel::Length ry) {
+    cb::Vector2<Kernel> a{ax, ay};
+    cb::Vector2<Kernel> b{bx, by};
+    cb::Vector2<Kernel> c = a + b;
+
+    cb::Vector2<Kernel> result{rx, ry};
+    return c == result;
 }
-
+static_assert(testVector2Plus<cb::MetreKernel>(cb::m(1), cb::m(2), cb::m(3),
+                                               cb::m(4), cb::m(4), cb::m(6)));
+static_assert(testVector2Plus<cb::BasicKernel>(1, 2, 3, 4, 4, 6));
+/*
 constexpr void testVector2Minus() {
     constexpr cb::Vector2 a{1.f, 2.f};
     constexpr cb::Vector2 b{4.f, 5.f};
