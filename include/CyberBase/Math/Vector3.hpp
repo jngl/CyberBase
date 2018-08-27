@@ -6,65 +6,42 @@
 
 namespace cb
 {
-/*
-template <class T> class Vector3 : public Tuple3<T>
-{
-  public:
-    using Tuple3<T>::Tuple3;
-    using Tuple3<T>::x;
-    using Tuple3<T>::y;
-    using Tuple3<T>::z;
 
-    constexpr Vector3<T> operator+(const Vector3<T> &r) const {
+template <class Kernel> struct Vector3
+{
+    static_assert(isKernel<Kernel>());
+
+    using Length = typename Kernel::Length;
+    using Real = typename Kernel::Real;
+
+    constexpr Vector3() = default;
+    constexpr Vector3(Length p_x, Length p_y, Length p_z) :
+        x(p_x),
+        y(p_y),
+        z(p_z) {}
+
+    constexpr Vector3 operator+(const Vector3 &r) const {
         return {x + r.x, y + r.y, z + r.z};
     }
 
-    constexpr Vector3<T> operator-(const Vector3<T> &r) const {
+    constexpr Vector3 operator-(const Vector3 &r) const {
         return {x - r.x, y - r.y, z - r.z};
     }
 
-    constexpr Vector3<T> operator/(T r) const { return {x / r, y / r, z / r}; }
+    constexpr Vector3 operator/(Real r) const { return {x / r, y / r, z / r}; }
 
-    constexpr Vector3<T> operator*(T r) const { return {x * r, y * r, z * r}; }
+    constexpr Vector3 operator*(Real r) const { return {x * r, y * r, z * r}; }
 
-    constexpr Vector3<T> operator+=(const Vector3<T> &r) {
-        x += r.x;
-        y += r.y;
-        z += r.z;
-        return *this;
-    }
-
-    constexpr Vector3<T> operator-=(const Vector3<T> &r) {
-        x -= r.x;
-        y -= r.y;
-        z -= r.z;
-        return *this;
-    }
-
-    constexpr Vector3<T> operator/=(T r) {
-        x /= r;
-        y /= r;
-        z /= r;
-        return *this;
-    }
-
-    constexpr Vector3<T> operator*=(T r) {
-        x *= r;
-        y *= r;
-        z *= r;
-        return *this;
-    }
-
-    constexpr bool operator==(const Vector3<T> &p_right) const {
+    constexpr bool operator==(const Vector3 &p_right) const {
         return delta_equal(x, p_right.x) && delta_equal(y, p_right.y) &&
                delta_equal(z, p_right.z);
     }
+
+    Length x = zero<Length>();
+    Length y = zero<Length>();
+    Length z = zero<Length>();
 };
 
-using Vector3f = Vector3<float>;
-using Vector3d = Vector3<double>;
-using Vector3r = Vector3<Real>;
-*/
 /*
 constexpr Real squared_length(Vector3 v) {
     Real result = 0;
