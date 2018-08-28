@@ -16,7 +16,9 @@ void Logger::add(std::ostream *p_outStream) {
 
 LogLine::LogLine(Logger *p_logger) : m_logger(p_logger) {}
 
-LogLine::~LogLine() {
+LogLine::~LogLine() { end(); }
+
+void LogLine::end() {
     for (std::ostream *stream : m_logger->m_streams) {
         (*stream) << std::endl;
     }
@@ -26,6 +28,11 @@ void LogLine::print(const std::string &message) const {
     for (std::ostream *stream : m_logger->m_streams) {
         (*stream) << message;
     }
+}
+
+LogLineError::~LogLineError() {
+    end();
+    exit(1);
 }
 
 const LogLine &operator<<(const LogLine &ll, const std::string &str) {
@@ -68,8 +75,8 @@ LogLine logWarn(const char *file, int line) {
     return myLine;
 }
 
-LogLine logError(const char *file, int line) {
-    LogLine myLine(&error);
+LogLineError logError(const char *file, int line) {
+    LogLineError myLine(&error);
     myLine << file << "(" << line << ") error : ";
     return myLine;
 }

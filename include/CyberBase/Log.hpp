@@ -26,15 +26,25 @@ class LogLine
     explicit LogLine(Logger *p_logger);
     LogLine(const LogLine &) = default;
     LogLine(LogLine &&) = default;
-    ~LogLine();
+    virtual ~LogLine();
 
     LogLine &operator=(const LogLine &) = default;
     LogLine &operator=(LogLine &&) = default;
 
     void print(const std::string &message) const;
 
+  protected:
+    void end();
+
   private:
     Logger *m_logger;
+};
+
+class LogLineError : public cb::LogLine
+{
+  public:
+    using cb::LogLine::LogLine;
+    ~LogLineError();
 };
 
 const LogLine &operator<<(const LogLine &ll, const std::string &str);
@@ -45,7 +55,7 @@ const LogLine &operator<<(const LogLine &ll, int val);
 
 LogLine logInfo(const char *file, int line);
 LogLine logWarn(const char *file, int line);
-LogLine logError(const char *file, int line);
+LogLineError logError(const char *file, int line);
 
 Logger &getLoggerInfo();
 Logger &getLoggerWarning();
