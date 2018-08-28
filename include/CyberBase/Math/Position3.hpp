@@ -17,6 +17,13 @@ template <class Kernel> struct Position3
     Length y = zero<Length>();
     Length z = zero<Length>();
 };
+
+template <class Kernel>
+const LogLine &operator<<(const LogLine &ll, const Position3<Kernel> &pos) {
+    ll << pos.x << " " << pos.y << " " << pos.z;
+    return ll;
+}
+
 } // namespace cb
 
 #endif // CYBER_BASE_TYPE_SAFE_POSITION2_HPP

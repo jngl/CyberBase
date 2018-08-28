@@ -42,6 +42,12 @@ template <class Kernel> struct Vector3
     Length z = zero<Length>();
 };
 
+template <class Kernel>
+const LogLine &operator<<(const LogLine &ll, const Vector3<Kernel> &pos) {
+    ll << pos.x << " " << pos.y << " " << pos.z;
+    return ll;
+}
+
 /*
 constexpr Real squared_length(Vector3 v) {
     Real result = 0;

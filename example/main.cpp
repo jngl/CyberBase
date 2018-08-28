@@ -14,18 +14,16 @@ int main() {
                  << "1";
 
     cb::Vector3<cb::BasicKernel> test{45, 2, 3};
-    CB_LOG_INFO << "Vector3<BasicKernel> :" << test.x << " " << test.y << " "
-                << test.z;
+    CB_LOG_INFO << "Vector3<BasicKernel> :" << test;
 
     cb::Vector3<cb::MetreKernel> testb{cb::m(45), cb::m(2), cb::m(3)};
-    CB_LOG_INFO << "Vector3<MetreKernel> :" << testb.x << " " << testb.y << " "
-                << testb.z;
+    CB_LOG_INFO << "Vector3<MetreKernel> :" << testb;
 
     cb::Vector2<cb::BasicKernel> test2{45, 2};
-    CB_LOG_INFO << "Vector2<BasicKernel> :" << test2.x << " " << test2.y;
+    CB_LOG_INFO << "Vector2<BasicKernel> :" << test2;
 
     cb::Vector2<cb::MetreKernel> test3{cb::m(45), cb::m(2)};
-    CB_LOG_INFO << "Vector2<MetreKernel> :" << test3.x << " " << test3.y;
+    CB_LOG_INFO << "Vector2<MetreKernel> :" << test3;
 
     cb::Metre m(12, cb::UnitPrefix::kilo);
     CB_LOG_INFO << "metre : " << m;
@@ -34,10 +32,10 @@ int main() {
     CB_LOG_INFO << "metre : " << m2;
 
     cb::Position2<cb::MetreKernel> pos2{cb::m(1), cb::m(2)};
-    CB_LOG_INFO << "pos2 : " << pos2.x << " " << pos2.y;
+    CB_LOG_INFO << "pos2 : " << pos2;
 
     cb::Position3<cb::MetreKernel> pos3{cb::m(1), cb::m(2), cb::m(3)};
-    CB_LOG_INFO << "pos3 : " << pos3.x << " " << pos3.y << " " << pos3.z;
+    CB_LOG_INFO << "pos3 : " << pos3;
 
     {
         auto line = CB_LOG_INFO;
