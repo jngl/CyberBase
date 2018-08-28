@@ -2,7 +2,7 @@
 #define CYBERBASE_TEST_VECTOR2_HPP
 
 #include <CyberBase/Math/Vector2.hpp>
-#include <CyberBase/Zero.hpp>
+#include <CyberBase/Math/Zero.hpp>
 
 //////////////////////////////////////////////////////////////////////////
 //                          DefaultConstructor

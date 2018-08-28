@@ -33,8 +33,11 @@ int main() {
     cb::Metre m2 = cb::m(1.21);
     CB_LOG_INFO << "metre : " << m2;
 
-    /* cb::Position pos{cb::m(1), cb::m(2), cb::m(3)};
-     CB_LOG_INFO << "pos : " << pos;*/
+    cb::Position2<cb::MetreKernel> pos2{cb::m(1), cb::m(2)};
+    CB_LOG_INFO << "pos2 : " << pos2.x << " " << pos2.y;
+
+    cb::Position3<cb::MetreKernel> pos3{cb::m(1), cb::m(2), cb::m(3)};
+    CB_LOG_INFO << "pos3 : " << pos3.x << " " << pos3.y << " " << pos3.z;
 
     {
         auto line = CB_LOG_INFO;

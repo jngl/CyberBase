@@ -3,7 +3,7 @@
 
 #include <CyberBase/Kernel.hpp>
 #include <CyberBase/Math/MathBase.hpp>
-#include <CyberBase/Zero.hpp>
+#include <CyberBase/Math/Zero.hpp>
 
 namespace cb
 {
