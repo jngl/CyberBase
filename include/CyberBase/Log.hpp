@@ -66,6 +66,6 @@ void addDefaultLogOutput();
 
 #define CB_LOG_INFO cb::logInfo(__FILE__, __LINE__)
 #define CB_LOG_WARN cb::logWarn(__FILE__, __LINE__)
-#define CB_LOG_ERROR cb::logError(__FILE__, __LINE__)
+#define CB_ERROR cb::logError(__FILE__, __LINE__)
 
 #endif // CYBERBASE_LOG_HPP

@@ -28,5 +28,5 @@ int main() {
             .for_each([&line](std::string str) { line << str << " "; });
     }
 
-    CB_LOG_ERROR << "a error";
+    CB_ERROR << "a error";
 }
