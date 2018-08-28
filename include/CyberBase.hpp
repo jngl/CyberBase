@@ -1,6 +1,7 @@
 #ifndef CYBERBASE_HPP
 #define CYBERBASE_HPP
 
+#include <CyberBase/Error.hpp>
 #include <CyberBase/Log.hpp>
 #include <CyberBase/Math.hpp>
 #include <CyberBase/Stream/StreamDecorator.hpp>
