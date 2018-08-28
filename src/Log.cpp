@@ -45,6 +45,11 @@ const LogLine &operator<<(const LogLine &ll, const char *str) {
     return ll;
 }
 
+const LogLine &operator<<(const LogLine &ll, const unsigned char *str) {
+    ll.print(std::string(reinterpret_cast<const char *>(str)));
+    return ll;
+}
+
 const LogLine &operator<<(const LogLine &ll, double val) {
     std::stringstream str;
     // str.precision(5);
