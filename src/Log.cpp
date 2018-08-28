@@ -46,6 +46,11 @@ const LogLine &operator<<(const LogLine &ll, double val) {
     return ll;
 }
 
+const LogLine &operator<<(const LogLine &ll, unsigned int val) {
+    ll.print(std::to_string(val));
+    return ll;
+}
+
 const LogLine &operator<<(const LogLine &ll, int val) {
     ll.print(std::to_string(val));
     return ll;

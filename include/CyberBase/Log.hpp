@@ -40,6 +40,7 @@ class LogLine
 const LogLine &operator<<(const LogLine &ll, const std::string &str);
 const LogLine &operator<<(const LogLine &ll, const char *str);
 const LogLine &operator<<(const LogLine &ll, double val);
+const LogLine &operator<<(const LogLine &ll, unsigned int val);
 const LogLine &operator<<(const LogLine &ll, int val);
 
 LogLine logInfo(const char *file, int line);
