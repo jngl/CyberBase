@@ -17,16 +17,14 @@ int main() {
     cb::Vector2f test2{45, 2};
     CB_LOG_INFO << "Vector2f :" << test2;
 
-    {
-        auto line = CB_LOG_INFO;
-        line << "person : ";
-        std::vector<Person> people = {
-            {15, "Alice"}, {18, "Bob"}, {24, "Cecile"}};
-        cb::stream(people)
-            .filter(cb::getter(&Person::isAdult))
-            .map(cb::getter(&Person::name))
-            .for_each([&line](std::string str) { line << str << " "; });
-    }
+    std::string text;
+    std::vector<Person> people = {{15, "Alice"}, {18, "Bob"}, {24, "Cecile"}};
+    cb::stream(people)
+        .filter(cb::getter(&Person::isAdult))
+        .map(cb::getter(&Person::name))
+        .for_each([&text](std::string str) { text += str + " "; });
+
+    CB_LOG_INFO << "person : " << text;
 
     CB_ERROR << "a error";
 }
