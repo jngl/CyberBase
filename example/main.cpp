@@ -3,6 +3,9 @@
 
 #include "Person.hpp"
 
+int add2(int v) { return v + 2; }
+int mult2(int v) { return v * 2; }
+
 int main() {
     cb::addDefaultLogOutput();
 
@@ -25,6 +28,9 @@ int main() {
         .for_each([&text](std::string str) { text += str + " "; });
 
     CB_LOG_INFO << "person : " << text;
+
+    int i = cr::Pipe(42, &add2).to(&mult2).result();
+    CB_LOG_INFO << "pipe : " << i;
 
     CB_ERROR << "a error";
 }
