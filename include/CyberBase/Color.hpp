@@ -19,4 +19,7 @@ namespace cb
 
     typedef ColorRGBA<float> ColorRGBAf;//float(0, 1)
     typedef ColorRGBA<unsigned int> ColorRGBAu8;//float(0, 255)
+
+    constexpr ColorRGBAu8 BLACK_u8{0,0,0,255};
+    constexpr ColorRGBAu8 RED_u8{255,0,0,255};
 }
