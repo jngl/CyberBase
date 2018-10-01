@@ -388,6 +388,13 @@ template <class T> struct Matrix4
 
 typedef Matrix4<float> Matrix4f;
 
+template<class T>
+struct Rect2
+{
+    Vector2<T> upperLeft;
+    Vector2<T> size;
+};
+
 template <class T>
 const LogLine &operator<<(const LogLine &ll, const Vector2<T> &vec) {
     ll << vec.x << " " << vec.y;
