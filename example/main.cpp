@@ -32,5 +32,5 @@ int main() {
     int i = cr::Pipe(42, &add2).to(&mult2).result();
     CB_LOG_INFO << "pipe : " << i;
 
-    CB_ERROR << "a error";
+    CB_LOG_ERROR << "a error";
 }

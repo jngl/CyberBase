@@ -30,11 +30,6 @@ void LogLine::print(const std::string &message) const {
     }
 }
 
-LogLineError::~LogLineError() {
-    end();
-    exit(1);
-}
-
 const LogLine &operator<<(const LogLine &ll, const std::string &str) {
     ll.print(str);
     return ll;
@@ -80,8 +75,8 @@ LogLine logWarn(const char *file, int line) {
     return myLine;
 }
 
-LogLineError logError(const char *file, int line) {
-    LogLineError myLine(&error);
+LogLine logError(const char *file, int line) {
+    LogLine myLine(&error);
     myLine << file << "(" << line << ") error : ";
     return myLine;
 }
