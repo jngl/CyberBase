@@ -4,16 +4,18 @@
 
 namespace cb
 {
-class Error
-{
-public:
-    Error(std::string message);
+    class Error : public std::exception
+    {
+    public:
+        explicit Error(std::string_view message);
 
-    std::string message() const;
+        [[nodiscard]] const char *what() const noexcept override;
 
-private:
-    std::string m_message;
-};
+        [[nodiscard]] std::string message() const;
 
-void check(bool mustBeTrue, std::string message);
+    private:
+        std::string m_message;
+    };
+
+    void check(bool mustBeTrue, std::string_view message);
 }

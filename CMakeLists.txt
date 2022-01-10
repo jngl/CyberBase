@@ -12,27 +12,12 @@ find_package(Boost 1.55 REQUIRED COMPONENTS unit_test_framework log)
 #CyberBase
 file(GLOB_RECURSE cyberbase_source_files src/*)
 add_library(CyberBase ${cyberbase_source_files})
-target_include_directories(CyberBase PUBLIC include/ ${Boost_INCLUDE_DIR})
-target_link_libraries(CyberBase ${Boost_LIBRARIES})
+target_include_directories(CyberBase PUBLIC include/ )
 
 #example
 file(GLOB_RECURSE example_source_files example/*)
 add_executable(example ${example_source_files})
 target_link_libraries(example PRIVATE CyberBase)
 
-#Test
-set(TEST_FILES tests/test_Vector3.cpp)
-
-enable_testing()
-add_executable(CyberBaseTests ${TEST_FILES})
-
-target_link_libraries(CyberBaseTests
-    CyberBase
-)
-target_include_directories(CyberBaseTests PUBLIC
-    include
-)
-
-add_test(Test CyberBaseTests)
 
 
