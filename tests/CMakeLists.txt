@@ -9,7 +9,7 @@ add_executable(CyberBase_tests
         Test_RangeOfNumber.cpp
         Test_math.cpp
         Test_component.cpp)
-target_link_libraries(CyberBase_tests PRIVATE CyberBase_catch_main LibCyberCraftGraphics)
+target_link_libraries(CyberBase_tests PRIVATE CyberBase_catch_main CyberBase)
 
 
 add_test(AllTest CyberBase_tests)
