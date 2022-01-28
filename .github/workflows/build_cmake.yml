@@ -52,4 +52,4 @@ jobs:
     - name: Upload Coverage
       working-directory: ${{runner.workspace}}/build
       shell: bash
-      run: bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-${GCC_VER}
+      run: bash <(curl -s https://codecov.io/bash)
