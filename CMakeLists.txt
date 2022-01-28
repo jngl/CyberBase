@@ -19,5 +19,8 @@ file(GLOB_RECURSE example_source_files example/*)
 add_executable(example ${example_source_files})
 target_link_libraries(example PRIVATE CyberBase)
 
+#Test
+add_subdirectory(tests)
+
 
 
