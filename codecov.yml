@@ -4,4 +4,4 @@ ignore:
 codecov:
   token: ae6a23d2-2d33-4388-beb1-025c88d4db3f
 fixes:
-  - "/home/runner/work/CyberBase/::"
+  - "/home/runner/work/CyberBase/CyberBase/::/"
