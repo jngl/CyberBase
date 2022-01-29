@@ -47,18 +47,19 @@ jobs:
       shell: bash
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ctest -C $BUILD_TYPE
+      run: |
+        ctest -C $BUILD_TYPE
+        gcovr -j ${{env.nproc}} --delete --root ../ --print-summary --xml-pretty --xml coverage.xml .
 
     - name: Archive code coverage results
       uses: actions/upload-artifact@v2
       with:
         name: code-coverage-report
-        path: ${{runner.workspace}}/build/coverage/*.gcov
+        path: ./build/coverage.xml
 
-    - name: Upload Coverage
-      working-directory: ${{runner.workspace}}
-      shell: bash
-      run: |
-        curl -Os https://uploader.codecov.io/v0.1.0_4653/linux/codecov
-        chmod +x codecov
-        ./codecov -s "./build/coverage/*.gcov"
+    - name: Publish to codecov
+      uses: codecov/codecov-action@v2
+      with:
+        flags: ${{ runner.os }}
+        name: ${{ runner.os }}-coverage
+        files: ./build/coverage.xml
