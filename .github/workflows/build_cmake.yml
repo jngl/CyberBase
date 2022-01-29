@@ -50,9 +50,9 @@ jobs:
       run: ctest -C $BUILD_TYPE
 
     - name: Upload Coverage
-      working-directory: ${{runner.workspace}}/build
+      working-directory: ${{runner.workspace}}
       shell: bash
       run: |
         curl -Os https://uploader.codecov.io/v0.1.0_4653/linux/codecov
         chmod +x codecov
-        ./codecov -s "./coverage/*.gcov"
+        ./codecov -s "./build/coverage/*.gcov"
