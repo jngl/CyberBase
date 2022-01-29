@@ -49,6 +49,12 @@ jobs:
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C $BUILD_TYPE
 
+    - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: ${{runner.workspace}}/build/coverage/*.gcov
+
     - name: Upload Coverage
       working-directory: ${{runner.workspace}}
       shell: bash
