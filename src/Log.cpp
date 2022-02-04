@@ -6,6 +6,7 @@
 
 namespace cb
 {
+MultiLogger log;
 
 void ConsoleLogger::log(const LogLine& line)
 {

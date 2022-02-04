@@ -103,6 +103,8 @@ class MultiLogger : public Logger
     std::vector<std::unique_ptr<Logger>> m_outputs;
 };
 
+extern MultiLogger log;
+
 }
 
 #define CB_INFO(logger, module, ...) logger.log({__FILE__, __LINE__, module, cb::LogType::Info, ##__VA_ARGS__})
