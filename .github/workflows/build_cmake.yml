@@ -27,6 +27,7 @@ jobs:
 
     - name: Configure CMake
       run: |
+        apt-get install -y libfmt-dev
         cmake -S . -B ./build -DENABLE_COVERAGE:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
