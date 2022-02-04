@@ -398,17 +398,17 @@ struct Rect2
 using Rect2i = Rect2<int>;
 using Rect2f = Rect2<float>;
 
-template <class T>
-const LogLine &operator<<(const LogLine &ll, const Vector2<T> &vec) {
-    ll << vec.x << " " << vec.y;
-    return ll;
-}
-
-template <class T>
-const LogLine &operator<<(const LogLine &ll, const Vector3<T> &vec) {
-    ll << vec.x << " " << vec.y << " " << vec.z;
-    return ll;
-}
+//template <class T>
+//const LogLine &operator<<(const LogLine &ll, const Vector2<T> &vec) {
+//    ll << vec.x << " " << vec.y;
+//    return ll;
+//}
+//
+//template <class T>
+//const LogLine &operator<<(const LogLine &ll, const Vector3<T> &vec) {
+//    ll << vec.x << " " << vec.y << " " << vec.z;
+//    return ll;
+//}
 
 } // namespace cb
 

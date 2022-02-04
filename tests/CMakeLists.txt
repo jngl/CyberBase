@@ -6,9 +6,10 @@ add_executable(CyberBase_tests
         Test_typeName.cpp
         Test_TypeId.cpp
         Test_id.cpp
+        Test_Log.cpp
         Test_RangeOfNumber.cpp
         Test_math.cpp
-        Test_component.cpp)
+        Test_component.cpp Test_Log.cpp)
 target_link_libraries(CyberBase_tests PRIVATE CyberBase_catch_main CyberBase project_options project_warnings)
 
 

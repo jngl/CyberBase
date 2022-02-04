@@ -77,11 +77,14 @@ endif()
 #Third party
 add_subdirectory(third_party)
 
+#FMT
+find_package(fmt REQUIRED)
+
 #CyberBase
 file(GLOB_RECURSE cyberbase_source_files src/*)
 add_library(CyberBase ${cyberbase_source_files})
 target_include_directories(CyberBase PUBLIC include/ )
-target_link_libraries(CyberBase project_options project_warnings)
+target_link_libraries(CyberBase project_options project_warnings fmt)
 
 #example
 file(GLOB_RECURSE example_source_files example/*)

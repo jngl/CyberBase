@@ -1,65 +1,112 @@
 #ifndef CYBERBASE_LOG_HPP
 #define CYBERBASE_LOG_HPP
 
-#include <ostream>
+#include <string_view>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <fmt/format.h>
+#include <fmt/color.h>
 
 namespace cb
 {
+enum class LogType
+{
+    Info,
+    Warning,
+    Error
+};
+
+constexpr std::string_view logTypeName(LogType type)
+{
+    switch (type) {
+    case LogType::Error:
+        return "Error";
+    case LogType::Warning:
+        return "Warning";
+    case LogType::Info:
+        return "Info";
+    }
+}
+
+constexpr fmt::color logTypeColor(LogType type)
+{
+    switch (type) {
+    case LogType::Error:
+        return fmt::color::red;
+    case LogType::Warning:
+        return fmt::color::orange;
+    case LogType::Info:
+        return fmt::color::green;
+    }
+}
+
+struct LogLine
+{
+    template <typename S, typename... Args>
+    LogLine(std::string_view p_file,
+            int p_line,
+            std::string_view p_module,
+            LogType p_type,
+            const S& p_format,
+            Args&&... p_args):
+        file(p_file),
+        line(p_line),
+        module(p_module),
+        type(p_type),
+        message(fmt::vformat(p_format,
+                               fmt::make_args_checked<Args...>(p_format,
+                                                             p_args...)))
+    {
+    }
+
+    std::string file;
+    int line = -1;
+    std::string module;
+    LogType type = LogType::Info;
+    std::string message;
+};
+
 class Logger
 {
   public:
-    friend class LogLine;
+    virtual ~Logger() = default;
 
-    Logger() = default;
-
-    void add(std::ostream *p_outStream);
-
-  private:
-    std::vector<std::ostream *> m_streams;
+    virtual void log(const LogLine& line) = 0;
 };
 
-class LogLine
+class ConsoleLogger : public Logger
 {
   public:
-    explicit LogLine(Logger *p_logger);
-    LogLine(const LogLine &) = default;
-    LogLine(LogLine &&) = default;
-    virtual ~LogLine();
-
-    LogLine &operator=(const LogLine &) = default;
-    LogLine &operator=(LogLine &&) = default;
-
-    void print(const std::string &message) const;
-
-  protected:
-    void end();
-
-  private:
-    Logger *m_logger;
+    void log(const LogLine& line) override;
 };
 
-const LogLine &operator<<(const LogLine &ll, const std::string &str);
-const LogLine &operator<<(const LogLine &ll, const char *str);
-const LogLine &operator<<(const LogLine &ll, const unsigned char *str);
-const LogLine &operator<<(const LogLine &ll, double val);
-const LogLine &operator<<(const LogLine &ll, unsigned int val);
-const LogLine &operator<<(const LogLine &ll, int val);
+class FileLogger : public Logger
+{
+  public:
+    explicit FileLogger(std::string_view filename);
 
-LogLine logInfo(const char *file, int line);
-LogLine logWarn(const char *file, int line);
-LogLine logError(const char *file, int line);
+    void log(const LogLine& line) override;
 
-Logger &getLoggerInfo();
-Logger &getLoggerWarning();
-Logger &getLoggerError();
+  private:
+    std::ofstream m_file;
+};
 
-void addDefaultLogOutput();
-} // namespace cb
+class MultiLogger : public Logger
+{
+  public:
+    void addOutput(std::unique_ptr<Logger>);
 
-#define CB_LOG_INFO cb::logInfo(__FILE__, __LINE__)
-#define CB_LOG_WARN cb::logWarn(__FILE__, __LINE__)
-#define CB_LOG_ERROR cb::logError(__FILE__, __LINE__)
+    void log(const LogLine& line) override;
+
+  private:
+    std::vector<std::unique_ptr<Logger>> m_outputs;
+};
+
+}
+
+#define CB_INFO(logger, module, ...) logger.log({__FILE__, __LINE__, module, cb::LogType::Info, ##__VA_ARGS__})
+#define CB_WARNING(logger, module, ...) logger.log({__FILE__, __LINE__, module, cb::LogType::Warning, ##__VA_ARGS__})
+#define CB_ERROR(logger, module, ...) logger.log({__FILE__, __LINE__, module, cb::LogType::Error, ##__VA_ARGS__})
 
 #endif // CYBERBASE_LOG_HPP

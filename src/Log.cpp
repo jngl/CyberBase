@@ -1,102 +1,60 @@
 #include "CyberBase/Log.hpp"
 
-#include <fstream>
-#include <iostream>
-#include <sstream>
+#include <filesystem>
+#include <chrono>
+#include <fmt/chrono.h>
 
 namespace cb
 {
-Logger info;
-Logger warning;
-Logger error;
 
-void Logger::add(std::ostream *p_outStream) {
-    m_streams.push_back(p_outStream);
+void ConsoleLogger::log(const LogLine& line)
+{
+    std::string fileName = std::filesystem::path(line.file).filename().string();
+
+    const std::chrono::time_point<std::chrono::system_clock> now =
+        std::chrono::system_clock::now();
+
+    fmt::print(fg(logTypeColor(line.type)),
+               "{:^15}|{:^9}| {} |{:^25}|{:^5}| {}\n",
+               line.module,
+               logTypeName(line.type),
+               now,
+               fileName,
+               line.line,
+               line.message);
 }
 
-LogLine::LogLine(Logger *p_logger) : m_logger(p_logger) {}
+void MultiLogger::addOutput(std::unique_ptr<Logger> output)
+{
+    m_outputs.emplace_back(std::move(output));
+}
 
-LogLine::~LogLine() { end(); }
-
-void LogLine::end() {
-    for (std::ostream *stream : m_logger->m_streams) {
-        (*stream) << std::endl;
+void MultiLogger::log(const LogLine &line) {
+    for(auto& output: m_outputs)
+    {
+        output->log(line);
     }
 }
-
-void LogLine::print(const std::string &message) const {
-    for (std::ostream *stream : m_logger->m_streams) {
-        (*stream) << message;
-    }
+FileLogger::FileLogger(std::string_view filename):
+m_file(std::string(filename).c_str(), std::ios::app | std::ios::out)
+{
 }
 
-const LogLine &operator<<(const LogLine &ll, const std::string &str) {
-    ll.print(str);
-    return ll;
+void FileLogger::log(const LogLine &line)
+{
+    std::string fileName = std::filesystem::path(line.file).filename().string();
+
+    const std::chrono::time_point<std::chrono::system_clock> now =
+        std::chrono::system_clock::now();
+
+    std::string lineStr = fmt::format("{};{};{};{};{};{}\n",
+                                   line.module,
+                                   logTypeName(line.type),
+                                   now,
+                                   fileName,
+                                   line.line,
+                                   line.message);
+    m_file << lineStr;
+}
 }
 
-const LogLine &operator<<(const LogLine &ll, const char *str) {
-    ll.print(std::string(str));
-    return ll;
-}
-
-const LogLine &operator<<(const LogLine &ll, const unsigned char *str) {
-    ll.print(std::string(reinterpret_cast<const char *>(str)));
-    return ll;
-}
-
-const LogLine &operator<<(const LogLine &ll, double val) {
-    std::stringstream str;
-    // str.precision(5);
-    str << val;
-    ll.print(str.str());
-    return ll;
-}
-
-const LogLine &operator<<(const LogLine &ll, unsigned int val) {
-    ll.print(std::to_string(val));
-    return ll;
-}
-
-const LogLine &operator<<(const LogLine &ll, int val) {
-    ll.print(std::to_string(val));
-    return ll;
-}
-
-LogLine logInfo(const char *file, int line) {
-    LogLine myLine(&info);
-    myLine << file << "(" << line << ") info : ";
-    return myLine;
-}
-
-LogLine logWarn(const char *file, int line) {
-    LogLine myLine(&warning);
-    myLine << file << "(" << line << ") warning : ";
-    return myLine;
-}
-
-LogLine logError(const char *file, int line) {
-    LogLine myLine(&error);
-    myLine << file << "(" << line << ") error : ";
-    return myLine;
-}
-
-Logger &getLoggerInfo() { return info; }
-
-Logger &getLoggerWarning() { return warning; }
-
-Logger &getLoggerError() { return error; }
-
-void addDefaultLogOutput() {
-    static std::ofstream logFile("log.txt");
-
-    cb::getLoggerInfo().add(&std::cout);
-    cb::getLoggerWarning().add(&std::cerr);
-    cb::getLoggerError().add(&std::cerr);
-
-    cb::getLoggerInfo().add(&logFile);
-    cb::getLoggerWarning().add(&logFile);
-    cb::getLoggerError().add(&logFile);
-}
-
-} // namespace cb
