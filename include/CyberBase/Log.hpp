@@ -109,17 +109,29 @@ extern MultiLogger log;
 }
 
 template<typename... Args>
-void private_cb_log(cb::Logger& logger, std::string_view module, cb::LogType type, Args&&... p_args){
+void private_cb_log(cb::Logger& logger,
+                    std::string_view file,
+                    int line,
+                    std::string_view module,
+                    cb::LogType type,
+                    Args&&... p_args)
+{
     logger.log({__FILE__, __LINE__, module, cb::LogType::Info, p_args...});
 }
 
 template<typename... Args>
-void private_cb_log(const std::shared_ptr<cb::Logger>& logger, std::string_view module, cb::LogType type, Args&&... p_args){
-    logger->log({__FILE__, __LINE__, module, cb::LogType::Info, p_args...});
+void private_cb_log(const std::shared_ptr<cb::Logger>& logger,
+                    std::string_view file,
+                    int line,
+                    std::string_view module,
+                    cb::LogType type,
+                    Args&&... p_args)
+{
+    logger->log({file, line, module, cb::LogType::Info, p_args...});
 }
 
-#define CB_INFO(logger, module, ...) private_cb_log(logger, module, cb::LogType::Info, ##__VA_ARGS__)
-#define CB_WARNING(logger, module, ...) private_cb_log(logger, module, cb::LogType::Warning, ##__VA_ARGS__)
-#define CB_ERROR(logger, module, ...) private_cb_log(logger, module, cb::LogType::Error, ##__VA_ARGS__)
+#define CB_INFO(logger, module, ...) private_cb_log(logger, __FILE__, __LINE__, module, cb::LogType::Info, ##__VA_ARGS__)
+#define CB_WARNING(logger, module, ...) private_cb_log(logger, __FILE__, __LINE__, module, cb::LogType::Warning, ##__VA_ARGS__)
+#define CB_ERROR(logger, module, ...) private_cb_log(logger, __FILE__, __LINE__, module, cb::LogType::Error, ##__VA_ARGS__)
 
 #endif // CYBERBASE_LOG_HPP
