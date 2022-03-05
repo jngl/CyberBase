@@ -116,7 +116,7 @@ void private_cb_log(cb::Logger& logger,
                     cb::LogType type,
                     Args&&... p_args)
 {
-    logger.log({__FILE__, __LINE__, module, cb::LogType::Info, p_args...});
+    logger.log({file, line, module, type, p_args...});
 }
 
 template<typename... Args>
@@ -127,7 +127,7 @@ void private_cb_log(const std::shared_ptr<cb::Logger>& logger,
                     cb::LogType type,
                     Args&&... p_args)
 {
-    logger->log({file, line, module, cb::LogType::Info, p_args...});
+    logger->log({file, line, module, type, p_args...});
 }
 
 #define CB_INFO(logger, module, ...) private_cb_log(logger, __FILE__, __LINE__, module, cb::LogType::Info, ##__VA_ARGS__)
