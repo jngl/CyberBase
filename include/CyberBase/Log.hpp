@@ -27,6 +27,8 @@ constexpr std::string_view logTypeName(LogType type)
         return "Warning";
     case LogType::Info:
         return "Info";
+    default:
+        return "?";
     }
 }
 
@@ -39,6 +41,8 @@ constexpr fmt::color logTypeColor(LogType type)
         return fmt::color::orange;
     case LogType::Info:
         return fmt::color::green;
+    default:
+        return fmt::color::red;
     }
 }
 

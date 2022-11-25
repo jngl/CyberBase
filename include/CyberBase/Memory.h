@@ -15,7 +15,7 @@ namespace cc{
     class ByteArray
     {
     private:
-        void* m_data = nullptr;
+        Uint8* m_data = nullptr;
         Uint32 m_size = 0;
 
     public:

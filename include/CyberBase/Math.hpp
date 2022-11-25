@@ -274,7 +274,7 @@ template <class T> struct Matrix4
 
     void projectPerspective(float pFOV, float pAspectRatio, float pNear,
                             float pFar) {
-        float tanThetaOver2 = static_cast<float>(tan(pFOV * (M_PI / 360.0)));
+        float tanThetaOver2 = tan(pFOV * static_cast<float>(M_PI / 360.0));
         setIdentity();
 
         // X and Y scaling
