@@ -2,7 +2,7 @@
 // Created by jngl on 20/12/2020.
 //
 
-#include <catch.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <CyberBase/Range.h>
 
 constexpr int g_range_min_1 = 3;

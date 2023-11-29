@@ -2,7 +2,7 @@
 // Created by jngl on 15/02/2022.
 //
 
-#include <catch.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <CyberBase/Memory.h>
 
 TEST_CASE( "cc::ByteArray Default constructor" ) {

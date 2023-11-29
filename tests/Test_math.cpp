@@ -2,7 +2,7 @@
 // Created by jngl on 05/06/2021.
 //
 
-#include <catch.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <CyberBase/Math.h>
 
 TEST_CASE( "math::equal" ) {

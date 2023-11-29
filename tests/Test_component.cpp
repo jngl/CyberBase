@@ -2,7 +2,7 @@
 // Created by jngl on 21/08/2021.
 //
 
-#include <catch.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <CyberBase/Component.h>
 #include <CyberBase/Common.h>
 #include <CyberBase/Id.h>

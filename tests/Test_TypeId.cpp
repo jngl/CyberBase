@@ -2,7 +2,7 @@
 // Created by jngl on 05/12/2020.
 //
 
-#include <catch.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <CyberBase/TypeId.h>
 #include <unordered_map>
 

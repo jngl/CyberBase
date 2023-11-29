@@ -2,7 +2,7 @@
 // Created by jngl on 31/01/2022.
 //
 
-#include <catch.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <CyberBase/Log.hpp>
 
 
