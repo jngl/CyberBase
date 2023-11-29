@@ -1,9 +1,4 @@
-//
-// Created by jngl on 03/12/2020.
-//
-
-#ifndef CYBERCRAFT_POINTER_H
-#define CYBERCRAFT_POINTER_H
+#pragma once
 
 #include <exception>
 #include <optional>
@@ -159,4 +154,4 @@ namespace cc {
     };
 }
 
-#endif //CYBERCRAFT_POINTER_H
+#pragma once

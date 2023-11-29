@@ -1,5 +1,4 @@
-#ifndef CYBER_BASE_STREAM_FILTER_HPP
-#define CYBER_BASE_STREAM_FILTER_HPP
+#pragma once
 
 namespace cb
 {
@@ -28,4 +27,3 @@ template <class Stream, class Function> class StreamFilter
 
 } // namespace cb
 
-#endif // CYBER_BASE_STREAM_FILTER_HPP

@@ -1,9 +1,4 @@
-//
-// Created by jngl on 28/03/2021.
-//
-
-#ifndef CYBERCRAFT_BASES_H
-#define CYBERCRAFT_BASES_H
+#pragma once
 
 namespace cc
 {
@@ -32,4 +27,3 @@ namespace cc
     };
 }
 
-#endif //CYBERCRAFT_BASES_H

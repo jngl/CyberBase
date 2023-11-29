@@ -1,5 +1,4 @@
-#ifndef CYBERBASE_HPP
-#define CYBERBASE_HPP
+#pragma once
 
 #include <CyberBase/Error.hpp>
 #include <CyberBase/Log.hpp>
@@ -10,4 +9,3 @@
 #include <CyberBase/Stream/StreamMap.hpp>
 #include <CyberBase/Stream/StreamVector.hpp>
 
-#endif // CYBERBASE_HPP

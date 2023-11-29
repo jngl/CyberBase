@@ -1,9 +1,4 @@
-//
-// Created by jngl on 03/09/2020.
-//
-
-#ifndef CYBERCRAFT_ID_H
-#define CYBERCRAFT_ID_H
+#pragma once
 
 #include "Range.h"
 
@@ -73,4 +68,3 @@ namespace cc {
     };
 }
 
-#endif //CYBERCRAFT_ID_H

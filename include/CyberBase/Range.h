@@ -1,9 +1,4 @@
-//
-// Created by jngl on 20/12/2020.
-//
-
-#ifndef CYBERCRAFT_RANGE_H
-#define CYBERCRAFT_RANGE_H
+#pragma once
 
 #include <type_traits>
 #include <optional>
@@ -237,4 +232,3 @@ namespace cc {
     };
 }
 
-#endif //CYBERCRAFT_RANGE_H

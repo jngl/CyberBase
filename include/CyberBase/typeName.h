@@ -1,9 +1,4 @@
-//
-// Created by jngl on 05/12/2020.
-//
-
-#ifndef CYBERCRAFT_TYPENAME_H
-#define CYBERCRAFT_TYPENAME_H
+#pragma once
 
 #include <string_view>
 
@@ -43,4 +38,3 @@ namespace cc {
     }
 }
 
-#endif //CYBERCRAFT_TYPENAME_H

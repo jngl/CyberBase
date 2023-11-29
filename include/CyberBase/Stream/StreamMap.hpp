@@ -1,5 +1,4 @@
-#ifndef CYBER_BASE_STREAM_MAP_HPP
-#define CYBER_BASE_STREAM_MAP_HPP
+#pragma once
 
 namespace cb
 {
@@ -23,5 +22,3 @@ template <class Stream, class Function> class StreamMap
 };
 
 } // namespace cb
-
-#endif // CYBER_BASE_STREAM_MAP_HPP

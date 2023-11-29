@@ -1,9 +1,4 @@
-//
-// Created by jngl on 22/08/2021.
-//
-
-#ifndef CYBERCRAFT_MEMORY_H
-#define CYBERCRAFT_MEMORY_H
+#pragma once
 
 #include "Common.h"
 
@@ -74,4 +69,3 @@ namespace cc{
     };
 }
 
-#endif //CYBERCRAFT_MEMORY_H

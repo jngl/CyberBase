@@ -1,9 +1,4 @@
-//
-// Created by jngl on 05/12/2020.
-//
-
-#ifndef CYBERCRAFT_HASH_H
-#define CYBERCRAFT_HASH_H
+#pragma once
 
 #include <cstdint>
 #include <string_view>
@@ -36,5 +31,3 @@ namespace cc {
     }
 }
 
-
-#endif //CYBERCRAFT_HASH_H

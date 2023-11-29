@@ -1,5 +1,4 @@
-#ifndef CYBER_BASE_MATH_HPP
-#define CYBER_BASE_MATH_HPP
+#pragma once
 
 #include <algorithm>
 #include <cmath>
@@ -411,5 +410,3 @@ using Rect2f = Rect2<float>;
 //}
 
 } // namespace cb
-
-#endif // CYBER_BASE_MATH_HPP

@@ -1,9 +1,4 @@
-//
-// Created by jngl on 21/08/2021.
-//
-
-#ifndef CYBERCRAFT_COMPONENT_H
-#define CYBERCRAFT_COMPONENT_H
+#pragma once
 
 #include "CyberBase/pointer.h"
 
@@ -36,5 +31,3 @@ namespace cc{
         std::vector<std::optional<T>> m_data;
     };
 }
-
-#endif //CYBERCRAFT_COMPONENT_H

@@ -1,9 +1,4 @@
-//
-// Created by jngl on 05/12/2020.
-//
-
-#ifndef CYBERCRAFT_TYPEID_H
-#define CYBERCRAFT_TYPEID_H
+#pragma once
 
 #include <CyberBase/hash.h>
 #include <CyberBase/typeName.h>
@@ -42,4 +37,3 @@ namespace std {
     };
 }
 
-#endif //CYBERCRAFT_TYPEID_H

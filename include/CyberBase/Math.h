@@ -1,9 +1,4 @@
-//
-// Created by jngl on 28/04/2020.
-//
-
-#ifndef CYBERCRAFT_MATH_H
-#define CYBERCRAFT_MATH_H
+#pragma once
 
 #include <cmath>
 #include <array>
@@ -423,4 +418,3 @@ namespace cc{
     typedef Matrix4<float> Matrix4f;
 }
 
-#endif //CYBERCRAFT_CONVERSION_H

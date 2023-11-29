@@ -1,5 +1,4 @@
-#ifndef CYBER_BASE_STREAM_DECORATOR_HPP
-#define CYBER_BASE_STREAM_DECORATOR_HPP
+#pragma once
 
 #include <functional>
 
@@ -30,5 +29,3 @@ template <class F> auto getter(F &&f) {
 }
 
 } // namespace cb
-
-#endif // CYBER_BASE_STREAM_DECORATOR_HPP

@@ -1,9 +1,4 @@
-//
-// Created by jngl on 27/06/2020.
-//
-
-#ifndef LIB_CYBERCRAFT_COMMON_H
-#define LIB_CYBERCRAFT_COMMON_H
+#pragma once
 
 namespace cc {
     using Uint8 = unsigned char;
@@ -17,4 +12,3 @@ namespace cc {
     static_assert(sizeof(Uint64) == 8, "size of Uint64 must be 64 bite");
 }
 
-#endif //LIB_CYBERCRAFT_COMMON_H

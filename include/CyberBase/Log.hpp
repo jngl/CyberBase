@@ -1,5 +1,4 @@
-#ifndef CYBERBASE_LOG_HPP
-#define CYBERBASE_LOG_HPP
+#pragma once
 
 #include <string_view>
 #include <string>
@@ -48,20 +47,17 @@ constexpr fmt::color logTypeColor(LogType type)
 
 struct LogLine
 {
-    template <typename S, typename... Args>
     LogLine(std::string_view p_file,
             int p_line,
             std::string_view p_module,
             LogType p_type,
-            const S& p_format,
-            Args&&... p_args):
+            fmt::string_view format,
+            fmt::format_args args):
         file(p_file),
         line(p_line),
         module(p_module),
         type(p_type),
-        message(fmt::vformat(p_format,
-                               fmt::make_args_checked<Args...>(p_format,
-                                                             p_args...)))
+        message(fmt::vformat(format,args))
     {
     }
 
@@ -107,9 +103,6 @@ class MultiLogger : public Logger
   private:
     std::vector<std::unique_ptr<Logger>> m_outputs;
 };
-
-extern MultiLogger log;
-
 }
 
 template<typename... Args>
@@ -118,9 +111,10 @@ void private_cb_log(cb::Logger& logger,
                     int line,
                     std::string_view module,
                     cb::LogType type,
-                    Args&&... p_args)
+                    fmt::format_string<Args...> format,
+                    Args&& ... args)
 {
-    logger.log({file, line, module, type, p_args...});
+    logger.log(cb::LogLine(file, line, module, type, format, fmt::make_format_args(args...)));
 }
 
 template<typename... Args>
@@ -129,13 +123,12 @@ void private_cb_log(const std::shared_ptr<cb::Logger>& logger,
                     int line,
                     std::string_view module,
                     cb::LogType type,
-                    Args&&... p_args)
+                    fmt::format_string<Args...> format,
+                    Args&& ... args)
 {
-    logger->log({file, line, module, type, p_args...});
+    logger->log({file, line, module, type, format, fmt::make_format_args(args...)});
 }
 
 #define CB_INFO(logger, module, ...) private_cb_log(logger, __FILE__, __LINE__, module, cb::LogType::Info, ##__VA_ARGS__)
 #define CB_WARNING(logger, module, ...) private_cb_log(logger, __FILE__, __LINE__, module, cb::LogType::Warning, ##__VA_ARGS__)
 #define CB_ERROR(logger, module, ...) private_cb_log(logger, __FILE__, __LINE__, module, cb::LogType::Error, ##__VA_ARGS__)
-
-#endif // CYBERBASE_LOG_HPP

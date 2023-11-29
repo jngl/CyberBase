@@ -1,5 +1,4 @@
-#ifndef CYBER_BASE_PIPE_HPP
-#define CYBER_BASE_PIPE_HPP
+#pragma once
 
 #include <functional>
 #include <type_traits>
@@ -23,5 +22,3 @@ template <class Param, class Return> class Pipe
 };
 
 } // namespace cr
-
-#endif

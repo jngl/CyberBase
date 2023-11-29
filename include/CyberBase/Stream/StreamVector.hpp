@@ -1,5 +1,4 @@
-#ifndef CYBER_BASE_STREAM_VECTOR_HPP
-#define CYBER_BASE_STREAM_VECTOR_HPP
+#pragma once
 
 #include "StreamDecorator.hpp"
 
@@ -31,5 +30,3 @@ template <class T> StreamDecorator<StreamVector<T>> stream(const T &p_vector) {
 }
 
 } // namespace cb
-
-#endif // CYBER_BASE_STREAM_VECTOR_HPP

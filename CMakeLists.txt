@@ -81,7 +81,7 @@ add_subdirectory(third_party)
 find_package(fmt REQUIRED)
 
 #CyberBase
-file(GLOB_RECURSE cyberbase_source_files src/*)
+file(GLOB_RECURSE cyberbase_source_files src/* include/*)
 add_library(CyberBase ${cyberbase_source_files})
 target_include_directories(CyberBase PUBLIC include/ )
 target_link_libraries(CyberBase project_options project_warnings fmt)
