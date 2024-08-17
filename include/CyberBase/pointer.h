@@ -6,7 +6,7 @@
 #include "CyberBase/Common.h"
 #include "CyberBase/Error.hpp"
 
-namespace cc {
+namespace cb {
     template<class T>
     class Ref final{
     public:

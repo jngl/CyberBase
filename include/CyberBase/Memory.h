@@ -6,7 +6,7 @@
 #include <array>
 #include <string_view>
 
-namespace cc{
+namespace cb{
     class ByteArray
     {
     private:

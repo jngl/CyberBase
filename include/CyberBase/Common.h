@@ -1,6 +1,6 @@
 #pragma once
 
-namespace cc {
+namespace cb {
     using Uint8 = unsigned char;
     using Uint16 = unsigned short;
     using Uint32 = unsigned int;

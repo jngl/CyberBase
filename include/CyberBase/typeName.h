@@ -4,7 +4,7 @@
 
 // https://stackoverflow.com/questions/81870/is-it-possible-to-print-a-variables-type-in-standard-c/56766138#56766138
 
-namespace cc {
+namespace cb {
 
     namespace impl {
         template<class T>

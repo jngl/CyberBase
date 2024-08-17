@@ -3,7 +3,7 @@
 #include <cmath>
 #include <array>
 
-namespace cc{
+namespace cb{
     template<class T>
     struct Precision{
         static constexpr T value = static_cast<T>(0.0001);

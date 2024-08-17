@@ -7,7 +7,7 @@
 
 
 TEST_CASE( "cc::Id Generator" ) {
-    using IdGenerator = cc::IdGenerator<unsigned int, struct TestId>;
+    using IdGenerator = cb::IdGenerator<unsigned int, struct TestId>;
     using Id = IdGenerator::ThisId;
 
     IdGenerator gen;
@@ -29,7 +29,7 @@ TEST_CASE( "cc::Id Generator" ) {
 }
 
 TEST_CASE( "cc::Id Generator full" ) {
-    using IdGenerator = cc::IdGenerator<unsigned char, struct TestIdFull>;
+    using IdGenerator = cb::IdGenerator<unsigned char, struct TestIdFull>;
     using Id = IdGenerator::ThisId;
 
     IdGenerator gen;

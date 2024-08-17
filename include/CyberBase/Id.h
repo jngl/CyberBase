@@ -5,7 +5,7 @@
 #include <string>
 #include <limits>
 
-namespace cc {
+namespace cb {
     template<class t_ValueType, class t_Tag>
     class Id {
     public:

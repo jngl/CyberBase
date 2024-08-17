@@ -1,6 +1,6 @@
 #include "CyberBase/Timer.hpp"
 
-namespace cc {
+namespace cb {
     Timer::Timer() :
             mTimeStart(now()) {
     }

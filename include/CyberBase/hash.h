@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <string_view>
 
-namespace cc {
+namespace cb {
 
     // FNV1a c++11 constexpr compile time hash functions, 32 and 64 bit
     // str should be implicitly convertible std::string_view, value should be left out

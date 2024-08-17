@@ -6,7 +6,7 @@
 #include <cstring>
 #include <fstream>
 
-namespace cc{
+namespace cb{
     ByteArray::ByteArray():
     m_data(nullptr),
     m_size(0){

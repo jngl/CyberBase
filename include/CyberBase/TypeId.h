@@ -3,7 +3,7 @@
 #include <CyberBase/hash.h>
 #include <CyberBase/typeName.h>
 
-namespace cc {
+namespace cb {
     class TypeId {
     public:
         template<class T>
@@ -30,8 +30,8 @@ namespace cc {
 }
 
 namespace std {
-    template<> struct hash<cc::TypeId> {
-        std::size_t operator()(const cc::TypeId &f) const {
+    template<> struct hash<cb::TypeId> {
+        std::size_t operator()(const cb::TypeId &f) const {
             return std::hash<uint64_t>{}(f.value());
         }
     };

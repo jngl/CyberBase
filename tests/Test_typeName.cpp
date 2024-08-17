@@ -7,8 +7,8 @@
 
 class Foo{};
 
-constexpr std::string_view intTypeName = cc::typeName<int>();
-constexpr std::string_view fooTypeName = cc::typeName<Foo>();
+constexpr std::string_view intTypeName = cb::typeName<int>();
+constexpr std::string_view fooTypeName = cb::typeName<Foo>();
 
 TEST_CASE( "cc::typeName" ) {
     REQUIRE(intTypeName == "int");
