@@ -39,4 +39,13 @@ TEST_CASE( "cc::ComponentManager" ) {
         cb::OptionalRef<Comp> comp4 = componentManager.get(id);
         REQUIRE(!comp4.hasValue());
     }
+
+    { // recreate
+        Comp &comp2 = componentManager.create(id);
+        comp2.value = value;
+
+        cb::OptionalRef<Comp> comp3 = componentManager.get(id);
+        REQUIRE(comp3.hasValue());
+        REQUIRE(comp3->value == value);
+    }
 }
