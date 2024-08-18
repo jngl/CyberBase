@@ -22,16 +22,18 @@ TEST_CASE( "cb::LogLine" )
 {
     constexpr std::string_view file = "file";
     constexpr int lineNumber = 42;
-    constexpr std::string_view module = "module";
+    constexpr std::string_view module_name = "module";
     constexpr cb::LogType logType = cb::LogType::Info;
-    constexpr fmt::string_view format = "{}";
-    const fmt::format_args args = fmt::make_format_args(1);
+    constexpr fmt::string_view format = "{} {}";
+    constexpr int var1 = 45;
+    constexpr int var2 = 666;
+    const fmt::format_args args = fmt::make_format_args(var1, var2);
 
-    cb::LogLine line(file, lineNumber, module, logType, format, args);
+    cb::LogLine line = cb::LogLine::make(file, lineNumber, module_name, logType, format, var1, var2);
 
     REQUIRE(line.file == file);
     REQUIRE(line.line == lineNumber);
-    REQUIRE(line.module == module);
+    REQUIRE(line.module == module_name);
     REQUIRE(line.type == logType);
-    REQUIRE(line.message == "1");
+    REQUIRE(line.message == "45 666");
 }

@@ -47,7 +47,7 @@ TEST_CASE( "cc:Range copy assignment Operator" ) {
 
 TEST_CASE( "cc:Range copy assignment Operator same" ) {
     cb::Range<int> a = g_range_1;
-    cb::Range<int>& b = a;
+    const cb::Range<int>& b = a;
 
     a= b;
 

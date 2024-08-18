@@ -57,5 +57,14 @@ void FileLogger::log(const LogLine &line)
                                    line.message);
     m_file << lineStr;
 }
-}
 
+LogLine::LogLine(std::string_view p_file, int p_line, std::string_view p_module, LogType p_type,
+                 fmt::string_view fmt, fmt::format_args args) :
+        file(p_file),
+        line(p_line),
+        module(p_module),
+        type(p_type),
+        message(fmt::vformat(fmt, args))
+{
+}
+}

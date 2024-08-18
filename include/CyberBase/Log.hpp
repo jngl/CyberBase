@@ -49,21 +49,26 @@ struct LogLine
             int p_line,
             std::string_view p_module,
             LogType p_type,
-            fmt::string_view format,
-            fmt::format_args args):
-        file(p_file),
-        line(p_line),
-        module(p_module),
-        type(p_type),
-        message(fmt::vformat(format,args))
+            fmt::string_view fmt, fmt::format_args args);
+
+    template<typename... Args>
+    static cb::LogLine make(std::string_view file,
+                                int line,
+                                std::string_view module,
+                                cb::LogType type,
+                                fmt::format_string<Args...> format,
+                                Args&& ... args)
     {
+        return cb::LogLine(file, line, module, type, format, fmt::make_format_args(args...));
     }
+
 
     std::string file;
     int line = -1;
     std::string module;
     LogType type = LogType::Info;
     std::string message;
+
 };
 
 class Logger
@@ -124,7 +129,7 @@ void private_cb_log(const std::shared_ptr<cb::Logger>& logger,
                     fmt::format_string<Args...> format,
                     Args&& ... args)
 {
-    logger->log({file, line, module, type, format, fmt::make_format_args(args...)});
+    logger->log(cb::LogLine(file, line, module, type, format, fmt::make_format_args(args...)));
 }
 
 #define CB_INFO(logger, module, ...) private_cb_log(logger, __FILE__, __LINE__, module, cb::LogType::Info, ##__VA_ARGS__)
