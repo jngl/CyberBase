@@ -7,161 +7,75 @@
 #include <fstream>
 
 namespace cb{
-    ByteArray::ByteArray():
-    m_data(nullptr),
-    m_size(0){
-    }
 
-    ByteArray::ByteArray(const void *copyFrom, Uint32 size):
-    m_size(size){
-        m_data = new Uint8[m_size];
-        memcpy(m_data, copyFrom, m_size);
-    }
-
-    ByteArray::ByteArray(Uint32 size):
-    m_size(size)
+    ByteArray::ByteArray(Uint64 size)
     {
-        m_data = new Uint8[m_size];
-        memset(m_data, static_cast<int>(m_size), 1);
+        m_data.resize(size);
     }
 
-    ByteArray::ByteArray(const ByteArray &other):
-    m_size(other.size()){
-        m_data = new Uint8[m_size];
-        memcpy(m_data, other.m_data, m_size);
+    Uint64 ByteArray::size() const {
+        return m_data.size();
     }
 
-    ByteArray::ByteArray(ByteArray &&moveFrom) noexcept:
-    m_data(moveFrom.m_data),
-    m_size(moveFrom.m_size)
-    {
-        moveFrom.m_size = 0;
-        moveFrom.m_data = nullptr;
-    }
-
-    ByteArray::~ByteArray() {
-        clear();
-    }
-
-    ByteArray &ByteArray::operator=(const ByteArray & other) {
-        if(&other == this){
-            return *this;
+    const std::byte *ByteArray::data() const {
+        if(m_data.empty())
+        {
+            return nullptr;
         }
-
-        m_size = other.size();
-
-        m_data = new Uint8[m_size];
-        memcpy(m_data, other.m_data, m_size);
-
-        return *this;
+        else
+        {
+            return m_data.data();
+        }
     }
 
-    ByteArray &ByteArray::operator=(ByteArray&& from) {
-        m_size = from.m_size;
-        m_data = from.m_data;
-        from.m_size = 0;
-        from.m_data = nullptr;
-        return *this;
-    }
-
-    Uint32 ByteArray::size() const {
-        return m_size;
-    }
-
-    const void *ByteArray::data() const {
-        return m_data;
-    }
-
-    std::optional<ByteArray> ByteArray::loadFromFile(std::string_view filename) {
+    std::optional<ByteArray> ByteArray::tryFromFile(std::string_view filename) {
         std::ifstream file(std::string(filename), std::ifstream::binary);
         if(!file){
             return {};
         }
 
         file.seekg (0, file.end);
-        Uint32 size = file.tellg();
+        const long int size = file.tellg();
         file.seekg (0, file.beg);
 
-        ByteArray result(size);
+        ByteArray result(static_cast<Uint64>(size));
 
-        file.read (reinterpret_cast<char*>(result.m_data),size);
+        file.read (reinterpret_cast<char*>(result.m_data.data()),size);
 
         return result;
     }
 
-    void ByteArray::copy(void *copyFrom, Uint32 size) {
-        clear();
-        m_size = size;
-        m_data = new Uint8[m_size];
-        memcpy(m_data, copyFrom, m_size);
-    }
-
     void ByteArray::clear() {
-        if(m_data)delete[] m_data;
-        m_data = nullptr;
-        m_size = 0;
+        m_data.clear();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    ByteArrayView::ByteArrayView(const void *refFrom, Uint32 size):
-    m_data(refFrom),
-    m_size(size)
+    ByteArrayView::ByteArrayView(const std::byte *refFrom, Uint64 size):
+    m_data(refFrom, size)
     {
     }
 
     ByteArrayView::ByteArrayView(const ByteArray & from):
-    m_data(from.data()),
-    m_size(from.size())
-    {
-    }
-
-    ByteArrayView::ByteArrayView(const ByteArrayView & from):
-    m_data(from.m_data),
-    m_size(from.m_size)
-    {
-    }
-
-    ByteArrayView::ByteArrayView(ByteArrayView &&moveFrom) noexcept:
-    m_data(moveFrom.m_data),
-    m_size(moveFrom.m_size)
+    m_data(from.data(), from.size())
     {
     }
 
     void ByteArrayView::clear() {
-        m_data = nullptr;
-        m_size = 0;
-    }
-
-    void ByteArrayView::ref(void *refFrom, Uint32 size) {
-        m_data = refFrom;
-        m_size = size;
+        m_data = std::span<const std::byte>();
     }
 
     ByteArrayView &ByteArrayView::operator=(const ByteArray& from) {
-        m_data = from.data();
-        m_size = from.size();
+        m_data = std::span<const std::byte>(from.data(), from.size());
         return *this;
     }
 
-    ByteArrayView &ByteArrayView::operator=(const ByteArrayView& from) {
-        m_data = from.m_data;
-        m_size = from.m_size;
-        return *this;
+    Uint64 ByteArrayView::size() const {
+        return m_data.size();
     }
 
-    ByteArrayView &ByteArrayView::operator=(ByteArrayView &&from) {
-        m_data = from.m_data;
-        m_size = from.m_size;
-        return *this;
-    }
-
-    Uint32 ByteArrayView::size() const {
-        return m_size;
-    }
-
-    const void *ByteArrayView::data() const {
-        return m_data;
+    const std::byte *ByteArrayView::data() const {
+        return m_data.data();
     }
 }
 
