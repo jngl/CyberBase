@@ -27,7 +27,6 @@ TEST_CASE( "cb::LogLine" )
     constexpr fmt::string_view format = "{} {}";
     constexpr int var1 = 45;
     constexpr int var2 = 666;
-    const fmt::format_args args = fmt::make_format_args(var1, var2);
 
     cb::LogLine line = cb::LogLine::make(file, lineNumber, module_name, logType, format, var1, var2);
 

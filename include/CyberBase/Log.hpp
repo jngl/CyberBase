@@ -54,12 +54,12 @@ struct LogLine
     template<typename... Args>
     static cb::LogLine make(std::string_view file,
                                 int line,
-                                std::string_view module,
+                                std::string_view module_name,
                                 cb::LogType type,
                                 fmt::format_string<Args...> format,
                                 Args&& ... args)
     {
-        return cb::LogLine(file, line, module, type, format, fmt::make_format_args(args...));
+        return cb::LogLine(file, line, module_name, type, format, fmt::make_format_args(args...));
     }
 
 
