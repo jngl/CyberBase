@@ -10,15 +10,15 @@ struct Foo{};
 struct Bar{};
 
 TEST_CASE( "cc::typeId value" ) {
-    REQUIRE(cc::TypeId::get<int>().value() != cc::TypeId::get<float>().value());
+    REQUIRE(cb::TypeId::get<int>().value() != cb::TypeId::get<float>().value());
 }
 
 TEST_CASE( "cc::typeId hashmap" ) {
-    std::unordered_map<cc::TypeId, int> map;
+    std::unordered_map<cb::TypeId, int> map;
 
-    map[cc::TypeId::get<Foo>()] = 1;
-    map[cc::TypeId::get<Bar>()] = 2;
+    map[cb::TypeId::get<Foo>()] = 1;
+    map[cb::TypeId::get<Bar>()] = 2;
 
-    REQUIRE(map[cc::TypeId::get<Foo>()] == 1);
-    REQUIRE(map[cc::TypeId::get<Bar>()] == 2);
+    REQUIRE(map[cb::TypeId::get<Foo>()] == 1);
+    REQUIRE(map[cb::TypeId::get<Bar>()] == 2);
 }

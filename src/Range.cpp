@@ -4,7 +4,7 @@
 
 #include "CyberBase/Range.h"
 
-namespace cc {
+namespace cb {
     const char *InvalidRange::what() const noexcept {
         return "Invalid Range";
     }

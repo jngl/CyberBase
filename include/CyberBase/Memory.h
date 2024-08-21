@@ -3,34 +3,36 @@
 #include "Common.h"
 
 #include <optional>
+#include <vector>
 #include <array>
 #include <string_view>
+#include <span>
 
-namespace cc{
+namespace cb{
     class ByteArray
     {
     private:
-        Uint8* m_data = nullptr;
-        Uint32 m_size = 0;
+        std::vector<std::byte> m_data;
 
     public:
-        ByteArray();
-        ByteArray(const void* copyFrom, Uint32 size);
-        explicit ByteArray(Uint32 size);
-        ByteArray(const ByteArray&);
-        ByteArray(ByteArray&& moveFrom) noexcept;
-        ~ByteArray();
+        ByteArray() = default;
+        explicit ByteArray(Uint64 size);
 
         void clear();
-        void copy(void* copyFrom, Uint32 size);
 
-        ByteArray& operator=(const ByteArray&);
-        ByteArray& operator=(ByteArray&&);
+        [[nodiscard]] Uint64 size() const;
+        [[nodiscard]] const std::byte* data() const;
 
-        [[nodiscard]] Uint32 size() const;
-        [[nodiscard]] const void* data() const;
+        template<class T>
+        static ByteArray fromVar(const T& value)
+        {
+            ByteArray result;
+            result.m_data.resize(sizeof value);
+            memcpy(result.m_data.data(), &value, result.m_data.size());
+            return result;
+        }
 
-        static std::optional<ByteArray> loadFromFile(std::string_view filename);
+        static std::optional<ByteArray> tryFromFile(std::string_view filename);
 
         template<class T, size_t size>
         static ByteArray copyFromArray(const std::array<T, size>& array){
@@ -41,26 +43,19 @@ namespace cc{
     class ByteArrayView
     {
     private:
-        const void* m_data = nullptr;
-        Uint32 m_size = 0;
+        std::span<const std::byte> m_data;
 
     public:
         ByteArrayView() = default;
-        ByteArrayView(const void* refFrom, Uint32 size);
-        ByteArrayView(const ByteArray&);
-        ByteArrayView(const ByteArrayView&);
-        ByteArrayView(ByteArrayView&& moveFrom) noexcept;
+        ByteArrayView(const std::byte* refFrom, Uint64 size);
+        explicit ByteArrayView(const ByteArray&);
 
         void clear();
-        void ref(void* refFrom, Uint32 size);
 
         ByteArrayView& operator=(const ByteArray&);
 
-        ByteArrayView& operator=(const ByteArrayView&);
-        ByteArrayView& operator=(ByteArrayView&&);
-
-        [[nodiscard]] Uint32 size() const;
-        [[nodiscard]] const void* data() const;
+        [[nodiscard]] Uint64 size() const;
+        [[nodiscard]] const std::byte* data() const;
 
         template<class T, size_t size>
         static ByteArray fromArray(const std::array<T, size>& array){

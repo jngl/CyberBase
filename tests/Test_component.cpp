@@ -7,7 +7,7 @@
 #include <CyberBase/Common.h>
 #include <CyberBase/Id.h>
 
-using Id = cc::Id<cc::Uint16, struct id>;
+using Id = cb::Id<cb::Uint16, struct id>;
 
 struct Comp {
     int value = 0;
@@ -17,10 +17,10 @@ TEST_CASE( "cc::ComponentManager" ) {
     constexpr int value = 42;
     Id id(0);
 
-    cc::ComponentManager<Comp, Id> componentManager;
+    cb::ComponentManager<Comp, Id> componentManager;
 
     { // Construct
-        cc::OptionalRef<Comp> comp = componentManager.get(id);
+        cb::OptionalRef<Comp> comp = componentManager.get(id);
         REQUIRE(!comp.hasValue());
     }
 
@@ -28,7 +28,7 @@ TEST_CASE( "cc::ComponentManager" ) {
         Comp &comp2 = componentManager.create(id);
         comp2.value = value;
 
-        cc::OptionalRef<Comp> comp3 = componentManager.get(id);
+        cb::OptionalRef<Comp> comp3 = componentManager.get(id);
         REQUIRE(comp3.hasValue());
         REQUIRE(comp3->value == value);
     }
@@ -36,7 +36,16 @@ TEST_CASE( "cc::ComponentManager" ) {
     { // destroy
         componentManager.destroy(Id(0));
 
-        cc::OptionalRef<Comp> comp4 = componentManager.get(id);
+        cb::OptionalRef<Comp> comp4 = componentManager.get(id);
         REQUIRE(!comp4.hasValue());
+    }
+
+    { // recreate
+        Comp &comp2 = componentManager.create(id);
+        comp2.value = value;
+
+        cb::OptionalRef<Comp> comp3 = componentManager.get(id);
+        REQUIRE(comp3.hasValue());
+        REQUIRE(comp3->value == value);
     }
 }

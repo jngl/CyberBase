@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 
-namespace cc {
+namespace cb {
     class InvalidRange : std::exception
     {
     public:

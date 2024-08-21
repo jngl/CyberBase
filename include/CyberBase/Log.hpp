@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Common.h"
+
 #include <string_view>
 #include <string>
 #include <vector>
@@ -10,7 +12,7 @@
 
 namespace cb
 {
-enum class LogType
+enum class LogType: Uint8
 {
     Info,
     Warning,
@@ -26,8 +28,6 @@ constexpr std::string_view logTypeName(LogType type)
         return "Warning";
     case LogType::Info:
         return "Info";
-    default:
-        return "?";
     }
 }
 
@@ -40,8 +40,6 @@ constexpr fmt::color logTypeColor(LogType type)
         return fmt::color::orange;
     case LogType::Info:
         return fmt::color::green;
-    default:
-        return fmt::color::red;
     }
 }
 
@@ -51,21 +49,26 @@ struct LogLine
             int p_line,
             std::string_view p_module,
             LogType p_type,
-            fmt::string_view format,
-            fmt::format_args args):
-        file(p_file),
-        line(p_line),
-        module(p_module),
-        type(p_type),
-        message(fmt::vformat(format,args))
+            fmt::string_view fmt, fmt::format_args args);
+
+    template<typename... Args>
+    static cb::LogLine make(std::string_view file,
+                                int line,
+                                std::string_view module_name,
+                                cb::LogType type,
+                                fmt::format_string<Args...> format,
+                                Args&& ... args)
     {
+        return cb::LogLine(file, line, module_name, type, format, fmt::make_format_args(args...));
     }
+
 
     std::string file;
     int line = -1;
     std::string module;
     LogType type = LogType::Info;
     std::string message;
+
 };
 
 class Logger
@@ -126,7 +129,7 @@ void private_cb_log(const std::shared_ptr<cb::Logger>& logger,
                     fmt::format_string<Args...> format,
                     Args&& ... args)
 {
-    logger->log({file, line, module, type, format, fmt::make_format_args(args...)});
+    logger->log(cb::LogLine(file, line, module, type, format, fmt::make_format_args(args...)));
 }
 
 #define CB_INFO(logger, module, ...) private_cb_log(logger, __FILE__, __LINE__, module, cb::LogType::Info, ##__VA_ARGS__)

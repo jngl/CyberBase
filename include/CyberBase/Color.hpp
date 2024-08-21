@@ -14,11 +14,11 @@ namespace cb
         T red, green, blue, alpha;
     };
 
-    typedef ColorRGB<float> ColorRGBf;//float(0, 1)
-    typedef ColorRGB<unsigned int> ColorRGBu8;//float(0, 255)
+    using ColorRGBf = ColorRGB<float>;
+    using ColorRGBu8 = ColorRGB<unsigned int>;
 
-    typedef ColorRGBA<float> ColorRGBAf;//float(0, 1)
-    typedef ColorRGBA<unsigned int> ColorRGBAu8;//float(0, 255)
+    using ColorRGBAf = ColorRGBA<float>;
+    using ColorRGBAu8 = ColorRGBA<unsigned int>;
 
     using Color = ColorRGBAu8;
 

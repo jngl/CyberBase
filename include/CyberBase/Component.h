@@ -2,7 +2,7 @@
 
 #include "CyberBase/pointer.h"
 
-namespace cc{
+namespace cb{
     template<class T,class Id>
     class ComponentManager{
     public:
@@ -20,7 +20,7 @@ namespace cc{
             m_data[id.value()].reset();
         }
 
-        cc::OptionalRef<T> get(Id id){
+        OptionalRef<T> get(Id id){
             if(id.value() >= m_data.size()){
                 return {};
             }
